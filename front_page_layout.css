@@ -1,0 +1,33 @@
+.ui-layout-center {
+    background-image: url(http://s3.amazonaws.com/busme-test/main/515607c8aa64e5000d000171/original/urban-photography-london-bus-in-city.jpg);
+    background-size: 100%;
+    background-position: bottom;
+}
+
+.text-backdrop {
+    background-color: rgba(23, 0, 0, 0.4);
+    color: #eeeeee;
+}
+
+.text-backdrop a {
+    color: #00ddff
+}
+
+.well-android {
+    background-color: grey;
+    padding: 5px;
+}
+
+.image-wrap-left img {
+    float: left;
+    margin-top: 5px;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.table-centered {
+    margin: 0 auto !important;
+    float: none !important;
+}
+  
