@@ -1,0 +1,41 @@
+<style>
+
+  .image-wrap-left img {
+    float: left;
+    margin-top: 5px;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    font-size: 13px;
+    line-height: 18px;
+  }
+
+  p {
+    font-size: 8px;
+    line-height: 12px;
+  }
+
+  .ui-layout-south {
+    padding: 0;
+  }
+</style>
+<div class="row-fluid well-small">
+  <div class="span4">
+    <h2>Download the App</h2>
+
+    <p class="image-wrap-left">
+      <a href="http://busme.us/android">
+        <img src="http://s3.amazonaws.com/busme-test/main/51560840aa64e5000d000226/original/busme_android.png"
+             height="50">
+      </a>
+      Just point your Android Phone to <a href="http://busme.us/android">http://busme.us</a> or use this QR code
+      and your phone will go directly to a download page.
+    </p>
+  </div>
+  <div class="span8 well-small">
+    {{ cms:bus:render:shared/feedback_btn_footer }}
+  </div>
+</div>
