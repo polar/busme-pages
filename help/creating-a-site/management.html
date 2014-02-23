@@ -1,0 +1,78 @@
+<h1>Busme! Transit Site Administration</h1>
+<p>
+    A Busme! Transit Site has a particular structure that fosters a management that may be
+    handled by several people simultaneously dividing up the work.  Getting routes drawn
+    and schedules filled can take some time and it may be done faster by divide and
+    conquer of the tasks.
+</p>
+<h2>Deployments</h2>
+<p>
+    To help facilitate management of a Busme! Transit site, the site is divvied up into a
+    a number of top level components called a "Deployments".
+    A "Deployment" is a grouping entity that comprises
+    the entire routes and schedule that may activated. When you "activate" a Deployment
+    you "run" the system simulation. Running a system simulation means that your site is
+    able to collect posted locations from the Busme! Mobile App, and your system appears
+    as running on its public facing page.
+</p>
+<p>
+    You maintain Deployments to serve as different schedule designations. For example, you
+    may have deployments entitled "Normal" and "Snow Day", which contains the routes and
+    schedule for everyday, and possibly different routes and/or schedules for and
+    emergency show service, respectively. This approach allows you to have two valid system
+    definitions and activate the one you need with a couple clicks.
+</p>
+<p>
+    You may also use Deployments as workspaces. For instance, you may be able to
+    activate "Spring 2014" while simultaneously working on Deployment "Fall 2014".
+</p>
+<p>
+    Deployments are owned by people in the Planner role, when they are created by that
+    person. An Operator may activate a particular Deployment.
+</p>
+<p>
+    To help divvy up the workload even more, a Deployment is comprised of Networks, which
+    are logical divisions of Deployments. When you create a new Busme! Transit site,
+    you are given one Deployment named "Deployment 1" containing one Network, named "Network 1".
+</p>
+<h2>Networks</h2>
+<p>
+    A Network is just merely a division of a Deployment. A Network contains the routes and
+    schedules of one or more bus routes. You may also copy a network into another Deployment.
+    Therefore, you may have two or three people working on different routes in their own
+    Deployment workspaces, and copy those networks to a Deployment that may be activated.
+    Networks usually represent some section or network of Routes. For instance, you may have
+    a Deployment named "Normal" with Networks named "Southbound", "Northbound",
+    and "Crosstown".
+</p>
+<p>
+    Working with Networks also may speed up the "compiling" process in that you may only
+    have to change a few things in your Busme! CSV files for a particular network and
+    upload them for processing without having to upload to reprocess the entire Deployment.
+</p>
+<h2>Consistent Deployment</h2>
+<p>
+    A Deployment may only be activate if it is "consistent". We claim a deployment is "consistent"
+    if there are no common routes within the Networks of the Deployment, as that could cause
+    conflicts. So, if two Networks within a Deployment contained a Route with the Route Code
+    of "240", the Deployment would be inconsistent, and will not be able to be simulated or
+    activated.
+</p>
+<p>
+    Using a Deployment merely as a workspace, you may have a Deployment with many networks
+    that have routes in common, using it as a workspace. However, you will not be able to
+    activate it or simulate it.
+</p>
+<h2>Routes</h2>
+<p>
+    A Route is a definition of a bus line that is associated with some identifying
+    Route Code, such as 240, CA1, 345T, etc. Usually, buses on these routes follow a similar
+    path. A Route is defined by one or more Busme! CSV files, containing information such
+    as the Route Code, and the Service, which is the start and end dates, exception dates, and direction.
+    A Route also contains Journeys, which is a list of vehicle paths and times that comprise the route.
+</p>
+<h2>Journeys</h2>
+<p>
+    A Journey is the path a vehicle takes and its schedule times. It consists of list of Stop Points,
+    the path between the Stop Points and scheduled times a vehicle arrives at each of those stop points.
+</p>
