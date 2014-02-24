@@ -1,0 +1,210 @@
+<h1>Busme! Workflow</h1>
+<p>
+    This flow chart shows the general workflow for creating and managing a Busme! Site.
+</p>
+<div class="well">
+    <img src="https://s3.amazonaws.com/busme-test/images/Workflow1.jpg">
+</div>
+<h2>Basic Procedure</h2>
+<p>
+    The basic procedure is to create your Busme! Transit site. At, this point you will have one
+    Deployment named "Deployment 1" and a Network called "Network 1" inside that deployment, which
+    have been created for you as a convenience. You may use them immediately, change the names, or delete them
+    in favor of creating your own, or more as the case may be.
+</p>
+<h3>Use the Journey Builder Tool</h3>
+<p>
+    You use our Journey Builder Tool to list the Stop Points for a particular Journey and draw the paths
+    between those Stop Points. The Journey Builder has its own help page.
+</p>
+<p>
+    When you are done drawing your Journey Pattern and filling in the proper names for your Stop Points, you
+    fill in certain data about the Service, such as Start Date, End Date, Route Code, Route Name, Route Sort.
+    Filling in this information will produce one of two kinds of files:
+    <ul>
+        <li>A CSV File</li>
+        <li>A Zip File</li>
+    </ul>
+    You will most likely get a Comma Separated Values (CSV) file when you hit the
+    <span class="btn btn-mini">Download CSV File</span> button.
+    The CSV file contains a spreadsheet with the entered information in a configuration that Busme! needs
+    to read.
+</p>
+<p>
+    Inside that CSV File is the KML, which is the geographic data, definition of the JourneyPattern.
+    However, if the KML file is larger than 8K characters, it will be put into a separate file,
+    and the file you download will be a Zip file containing a folder with the two files. The reason for
+    getting a separate KML file is because some spreadsheet programs cannot handle that amount of data in a
+    single cell. The CSV File will contain a "file:xxxx.kml" specification in its place.
+</p>
+<h3>Add the Schedule Times</h3>
+<p>
+    To work on the CSV File, you may have to unzip the downloaded Zip file, and open the "csv" file in your
+    favorite Spreadsheet program. We use LibreOffice, but MS Excel may suffice.
+</p>
+<p>
+    In your spreadsheet program, you add the times under the columns in which the Stop Points appear as they
+    would appear in a bus schedule. A separate document explains the anatomy of a Busme! CSV File in detail.
+</p>
+<h3>Save the Spreadsheet File</h3>
+<p>
+    You must save your changes. Note, the Busme! Network Compiler only processes Comma Separated Values (CSV) files.
+    So, you must save your file using the "Text(CSV)" "Save As" option on your spreadsheet program.  When you select
+    this option, if there are encoding options that are selectable, make sure that you choose UTF-8 character
+    encoding, a Field Delimiter of a comma (,), and a Text Delimiter of double quote ("), quote all text fields.
+</p>
+<p>
+    You may want to save your file in its native format, as you can do fancy stuff, such as using "TIME" equations
+    along with pointing to other cells. You may have special formatting to make it look more readable to you. All
+    of these enhancements will get lost in a CSV file.
+</p>
+<p>
+    You may download the a generated CSV Plan Zip file from the Busme! site. However, this file will most likely
+    be arranged in a different manner than it was accepted, as it comes from our internal representation.
+</p>
+<p>
+    The bottom line here is <strong>BACKUP YOUR OWN FILES</strong>.
+</p>
+<h3>Zip the Folder</h3>
+<p>
+    You may have more than one CSV File, but you can only upload one file at a time. If you put any CSV files
+    and any associated Journey Pattern KML files into a Folder You then zip up that folder, which is as
+    easy as using a third mouse button option. We will call this zip file the Busme! CSV Plan Zip File.
+</p>
+<h3>Upload the Busme! CSV Plan Zip File</h3>
+<p>
+    You upload the plan zip file by hitting the <span class="btn btn-mini">Plan Network</span> button on the Network
+    page. There you will be given some compile and completion statistics of your last upload, a log, and an
+    error log.
+</p>
+<div class="well">
+
+
+    <h2>Network Plan</h2>
+    <table class="table table-bordered">
+        <thead></thead>
+        <tbody>
+        <tr>
+            <th>Deployment</th>
+            <td><a href="#">Columbus IN</a></td>
+        </tr>
+        <tr>
+            <th>Network</th>
+            <td><a href="#">Main</a></td>
+        </tr>
+        <tr>
+            <th>Route Codes</th>
+            <td><div id="route_codes">
+
+                <a href="#">1</a>, <a href="#">2</a>, <a href="#">3</a>, <a href="#">4</a>
+            </div></td>
+        </tr>
+        <tr>
+            <th>Services</th>
+            <td><div id="services_count">4</div></td>
+        </tr>
+        <tr>
+            <th>Routes</th>
+            <td><div id="routes_count">4</div></td>
+        </tr>
+        <tr>
+            <th>Journeys</th>
+            <td><div id="vj_count">52</div></td>
+        </tr>
+        </tbody>
+    </table>
+    <h2>Manual Update Status</h2>
+    <table class="table table-bordered">
+        <tbody>
+        <tr>
+            <td>0 journeys have been manually changed since the plan was processed.</td>
+        </tr>
+
+        </tbody>
+    </table>
+    <p>
+    <form action="#" class="button_to" method="post"><div><input class="btn" type="submit" value="Generate Network Plan Busme! CSV Zip" /><input name="authenticity_token" type="hidden" value="AyBC2I5ZyxUeDQsTNV6buXhKavUmQ5DbMKtS+7RjnRI=" /></div></form>
+    </p>
+    <h2>Processing Status</h2>
+    <table class="table table-bordered">
+        <thead></thead>
+        <tbody>
+        <tr>
+            <th>Status</th>
+            <td>
+                <div id="status"></div>
+            </td>
+        </tr>
+        <tr>
+            <th>Start Time</th>
+            <td><div id="started_at"></div></td>
+        </tr>
+        <tr>
+            <th>Progress</th>
+            <td><div id="progress"></div></td>
+        </tr>
+        <tr>
+            <th>Complete Time</th>
+            <td><div id="completed_at"></div></td>
+        </tr>
+        </tbody>
+    </table>
+    <div id="upload_button">
+        <p>
+            <a href="#" class="btn">New Plan Definition</a>
+        </p>
+    </div>
+
+    <h3 id="processing_log_label">Processing Log <span id="processing_log_click"></span></h3>
+    <div id="processing_log">
+        <div>I, [2013-05-29T02:23:41.#8366]  INFO -- : Processing folder '/tmp/d20130529-8366-1dm1a0' for Network 'Main'.
+        </div>
+        <div>I, [2013-05-29T02:23:41.#8366]  INFO -- : Destroying all Routes in Network 'Main'.
+        </div>
+        <div>I, [2013-05-29T02:23:41.#8366]  INFO -- : Folder Levels 2 consisting of 4 files
+        </div>
+    </div>
+    <h3 id="processing_err_label">Processing Errors <span id="processing_err_click"></span></h3>
+    <div id="processing_err">
+    </div>
+</div>
+<p>
+    You upload the file by clicking the choosing the <span class="btn btn-mini">New Plan Defintion</span> button to get
+    to the following page.
+</p>
+<div class="well">
+
+    <h2>Network <a href="#">Main</a></h2>
+    <h2>Upload Plan File</h2>
+    <p>
+    <form accept-charset="UTF-8" action="#" class="new_plan" enctype="multipart/form-data" id="new_plan" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="_method" type="hidden" value="put" /><input name="authenticity_token" type="hidden" value="AyBC2I5ZyxUeDQsTNV6buXhKavUmQ5DbMKtS+7RjnRI=" /></div>
+        <p>
+            <label for="plan_upload_file">Busme! Zip or CSV, or GTFS Zip</label>
+            <input id="plan_upload_file" name="plan[upload_file]" type="file" />
+            <input id="plan_upload_file_cache" name="plan[upload_file_cache]" type="hidden" />
+            <br />
+            or
+            <br />
+            <label for="plan_file_url">File Url (Busme! Zip or CSV, or GTFS Zip)</label>
+            <input class="input input-xxlarge" id="plan_file_url" name="plan[file_url]" size="30" type="text" />
+        </p>
+        <p><input class="btn" name="commit" type="submit" value="Submit" /></p>
+    </form>
+    </p>
+</div>
+<p>
+    You may select a file from your local computer with the <span class="btn btn-mini">Choose File</span>.
+    button or place a URL of the file in the form that
+    you may have placed on a download site, such as DropBox, Google Drive, etc.
+</p>
+<p>
+    <strong>NOTE:</strong> Loading a local file from your computer may fail, especially if the file is big.
+    Our efficient web servers will cut short a large upload that is too slow and the upload
+    will fail. It is better to put large plan files on some other download site, such as DropBox or
+    Google Drive and our backend processors will download it from there.
+</p>
+<p>
+    Once you hit the <span class="btn btn-mini">Submit</span> button, you'll be taken back to the Network Planning
+    page, and the statistics and log while the backend processors are processing your plan file should update
+    automatically.
+</p>

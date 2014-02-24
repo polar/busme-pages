@@ -1,0 +1,59 @@
+<h1>Components of a Network</h1>
+<p>
+    This help page gives you some definitions of some of the terminology that is used to define a Busme!
+    Network of Routes.
+</p>
+<p>
+    A Network consists of a collection of Routes. Each Route is a cross section of Services and Journeys.
+    A Service represents the Start Date, End Date, Exception Dates, Day Class, which are the days of the week
+    that the service is in effect, and the Direction. Each Journey is associated with a particular Route's
+    Service.
+</p>
+<h2>Routes</h2>
+<p>
+    A Route is a definition of a bus line that is associated with some identifying
+    Route Code, such as 240, CA1, 345T, etc. Usually, vehicles on a particular route follow a similar
+    path. A Route may have many Service definitions.
+</p>
+<h2>Service</h2>
+<p>
+    A Service is a calendar specification. It tells you when the schedule applies, which is between the
+    Start Date and End Date. It also says when it is not in effect, which are the Exception Dates. It also
+    specifies the Day Class, which is the days of the week that the schedule applies, such as Monday, Wednesday,
+    Friday, or Daily. Each Journey is associated with a particular Service of a Route.
+</p>
+<h2>Journey</h2>
+<p>
+    A Journey is the path, i.e. Journey Pattern, a vehicle takes and its schedule times during a particular day.
+    It consists of list of Stop Points, the path between each of the Stop Points and scheduled times a vehicle arrives
+    at each of those Stop Points. It is also associated with a particular Service, which are the dates and days on which
+    the Journey will run.
+</p>
+<h2>Stop Point</h2>
+<p>
+    A Stop Point is simply a location, (Longitude, Latitude), where a there may be a bus stop. We call them
+    Stop Points because given public schedules, most times are associated with a bus stop. However, it may not
+    actually be a bus stop, but just a place that the schedule says that the vehicle will be passing at
+    a particular time. Sometimes we refer to those points as a Timing Point. For instance,
+    a bus that picks up people along a particular route every two blocks just may have not have a schedule
+    for each stop, because that would be daunting to the reader, but says that the bus
+    passes the corner of Washington St and Salina St at 7:00PM, incidentally where there is no bus stop.
+</p>
+<p>
+    For Busme! when planning the Journey Pattern with the Journey Builder tool, it is not necessary to list
+    every bus stop, but only the ones in which there is a time associated on the public schedule.
+</p>
+<h2>Journey Pattern</h2>
+<p>
+    A Journey Pattern is a list of Stop Points, and a list of Journey Pattern Links. Each Link specifies the path
+    between the Stop Points. A Journey Pattern is represented by a particular style of KML file. A KML File is
+    a Google XML standard for representing Graphic and Geographic Data. This file is built by our Journey Builder
+    Tool.
+</p>
+<p>
+    A Journey Pattern Timing Link (JPTL) is a Journey Pattern Link with a duration (in minutes) associated
+    with, i.e. it takes the specified minutes
+    for the vehicle to travel along its path. A Journey consists of start time at the first Stop Point of a
+    Journey Pattern and then associating duration times with each of its Journey Pattern Links, making them Journey
+    Pattern Timing Links.
+</p>

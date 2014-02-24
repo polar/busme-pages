@@ -1,0 +1,460 @@
+<h1>Anatomy of a Busme! CSV File</h1>
+<p>
+    You use Busme! CSV Files, that are usually generated from our Journey Builder Tool to populate your
+    Deployment and/or Networks with Journeys that will be simulated by our system. Busme! CSV Files may
+    define an entire Deployment with multiple networks or just a single Network.
+</p>
+<p>
+    When you get a CSV File back from the Journey Builder it has several lines that may look like the following example:
+</p>
+<table class="table table-bordered">
+    <tbody>
+    <tr>
+        <th>A</th>
+        <th>B</th>
+        <th>C</th>
+        <th>D</th>
+        <th>E</th>
+        <th>F</th>
+        <th>G</th>
+        <th>H</th>
+        <th>I</th>
+        <th>J</th>
+        <th>K</th>
+        <th>L</th>
+    </tr>
+    <tr>
+        <td>Network</td>
+        <td>South Campus</td>
+    </tr>
+    <tr>
+        <td>Route Name</td>
+        <td>240</td>
+        <td>Nob Hill</td>
+        <td>402</td>
+    </tr>
+    <tr>
+        <td>Start Date</td>
+        <td>2014-02-14</td>
+    </tr>
+    <tr>
+        <td>End Date</td>
+        <td>2014-05-14</td>
+    </tr>
+    <tr>
+        <td>Exception Dates</td>
+        <td>2014-03-06</td>
+        <td>2014-03-07</td>
+        <td>2014-03-08</td>
+        <td>2014-03-09</td>
+        <td>2014-03-10</td>
+        <td>2014-03-11</td>
+        <td>2014-03-12</td>
+        <td>2014-03-13</td>
+        <td>2014-03-14</td>
+        <td>2014-03-15</td>
+        <td>2014-03-16</td>
+    </tr>
+    <tr>
+        <td>Direction</td>
+        <td>ToSouthCampus</td>
+    </tr>
+    <tr>
+        <td>Stop Points</td>
+        <td>Days</td>
+        <td>Display Name</td>
+        <td>VID</td>
+        <td>College Place</td>
+        <td>Manley North</td>
+        <td>Manley South</td>
+        <td>GoldStein Center</td>
+        <td>NOTE</td>
+        <td>file:nob-hill.kml</td>
+    </tr>
+    </tbody>
+</table>
+<h2>Understanding the Compiling Process</h2>
+<p>
+    This file is read from top to bottom. You may describe multiple networks in a single
+    deployment, and multiple routes, services, directions, and journeys all in a single CSV file. Normally, you
+    will most likely take the approach to consolidate a particular route each into their own files, and furthermore
+    a separate file for each direction.
+    If you were to generate the Busme! CSV Plan Zip File, It will be organized in such a way.
+</p>
+<h3>Network</h3>
+<table class="table table-bordered">
+    <tbody>
+    <tr>
+    <th>A</th>
+    <th>B</th>
+    </tr>
+    <tr>
+        <td>Network</td>
+        <td>South Campus</td>
+    </tr>
+    </tbody>
+ </table>
+<p>
+    The network line specifies in which network the next definitions will apply. It must come <em>before</em> any
+    Route Name definition. If you are uploading this plan file as a definition for an entire Deployment, this line
+    will cause the creation of the network named in column B.
+</p>
+<h3>Route Name</h3>
+<table class="table table-bordered">
+    <tbody>
+    <tr>
+        <th>A</th>
+        <th>B</th>
+        <th>C</th>
+        <th>D</th>
+    </tr>
+    <tr>
+        <td>Route Name</td>
+        <td>240</td>
+        <td>Nob Hill</td>
+        <td>402</td>
+    </tr>
+    </tbody>
+</table>
+<p>
+    The Route Name line specifies a Name in Column C for the Route Code in Column B. Column D contains
+    the Route Sort. The Route Code may be any sequence of alphanumeric characters, such as 240, ATA3, etc.
+    The Route Sort is a floating point number that specifies how your route will show up when sorted against
+    other route codes in your system. For instance, in Syracuse, the bus lines are defined by their last
+    two numbers, and the first number is a variation. So, the routes want to be sorted by their last two
+    numbers then by their first number, and such the route sort for the 240 is 402. The Route Sort is used
+    for internal sorting and does not get displayed. However, so you get the idea, in Syracuse we'd have the
+    following sort of bus routes. 140, 240, 340, 440, 443, 543, 144, 244, 344, 50, 255, and this sort governs
+    how they are ordered on the Busme! Mobile App and web page.
+</p>
+<p>
+    If there are subsequent occurrences of Route Name lines for the same Route Code, the last definition
+    read will prevail. You're allowed to have them, just make sure they are the same for all files.
+</p>
+<h3>Start Date and End Date</h3>
+<p>
+    These fields are pretty self explanatory, the are the start date and the end date of the service
+    applied to anything below it. They must each appear together in the file, if you specify one,
+    you must subsequently specify the other.
+</p>
+<h3>Exception Dates</h3>
+<table class="table table-bordered">
+    <tbody>
+    <tr>
+        <th>A</th>
+        <th>B</th>
+        <th>C</th>
+        <th>D</th>
+        <th>E</th>
+        <th>F</th>
+        <th>G</th>
+        <th>H</th>
+        <th>I</th>
+        <th>J</th>
+        <th>K</th>
+        <th>L</th>
+    </tr>
+    <tr>
+        <td>Exception Dates</td>
+        <td>2014-03-06</td>
+        <td>2014-03-07</td>
+        <td>2014-03-08</td>
+        <td>2014-03-09</td>
+        <td>2014-03-10</td>
+        <td>2014-03-11</td>
+        <td>2014-03-12</td>
+        <td>2014-03-13</td>
+        <td>2014-03-14</td>
+        <td>2014-03-15</td>
+        <td>2014-03-16</td>
+    </tr>
+    </tbody>
+</table>
+<p>
+    The Exception Dates specified in Column B and beyond will tell that any of the
+    Journey specification will not apply within the service date range. You will get
+    a warning if one of the exception dates is NOT in between the current Start and End Dates.
+</p>
+<h3>Direction</h3>
+<table class="table table-bordered">
+    <tbody>
+    <tr>
+        <th>A</th>
+        <th>B</th>
+    </tr>
+    <tr>
+        <td>Direction</td>
+        <td>ToSouthCampus</td>
+    </tr>
+    </tbody>
+</table>
+<p>
+    The Direction in column B usually specifies a one word designation of which direction the next journeys
+    that are specified. Please keep it short as this element will be displayed to distinguish journeys.
+    Examples, are Inbound, Outbound, Downtown, etc. A Direction must be specified immediately before a
+    Stop Points line.
+</p>
+<h3>Stop Points</h3>
+<table class="table table-bordered">
+    <tbody>
+    <tr>
+        <th>A</th>
+        <th>B</th>
+        <th>C</th>
+        <th>D</th>
+        <th>E</th>
+        <th>F</th>
+        <th>G</th>
+        <th>H</th>
+        <th>I</th>
+        <th>J</th>
+    </tr>
+    <tr>
+        <td>Stop Points</td>
+        <td>Days</td>
+        <td>Display Name</td>
+        <td>VID</td>
+        <td>College Place</td>
+        <td>Manley North</td>
+        <td>Manley South</td>
+        <td>GoldStein Center</td>
+        <td>NOTE</td>
+        <td>file:nob-hill.kml</td>
+    </tr>
+    </tbody>
+</table>
+<p>
+    The Stop Points line is where the stop points or timing points are specified. The names of
+    each Stop Point start in Column E and continue until NOTE appears. In the column after NOTE,
+    the KML file that specifies the default Journey Pattern for this direction of the Route. The
+    names that comprise the list of Stop Points must occur in the KML file in the order they
+    are shown, otherwise, an error will occur.  That is why we generate the CSV file for you to
+    use so that it is correct.
+</p>
+<p>
+    If the KML is larger than 8K characters, the KML may reside in a separate file. When it is this
+    case, a file url will be in its place, as shown above. When processing the Busme! CSV compiler
+    will look for that file in the current folder, and keep looking upwards though containing folders
+    until a match is found. If one is astutely aware as to this processing, one can drastically reduce the
+    size by sharing a KML file. One may share a KML file because it only contains the Journey Pattern
+    that may be reused for many different service files.
+</p>
+<p>
+    The Journey Pattern referred to in the column after NOTE appears is the <em>default</em> Journey
+    Pattern. Lines subsequent to the Stop Point lines will place times underneath the Stop Point
+    names, and in the column after NOTE appears, one can place another KML structure or KML file
+    reference. The reason you would place a KML in this column is that the Journey Pattern may
+    have been altered slightly for a particular journey, such as bypassing a street on the particular
+    run
+</p>
+<h3>Journey Specifications</h3>
+<table class="table table-bordered">
+    <tbody>
+    <tr>
+        <th>A</th>
+        <th>B</th>
+        <th>C</th>
+        <th>D</th>
+        <th>E</th>
+        <th>F</th>
+        <th>G</th>
+        <th>H</th>
+        <th>I</th>
+        <th>J</th>
+    </tr>
+    <tr>
+        <td>Stop Points</td>
+        <td>Days</td>
+        <td>Display Name</td>
+        <td>VID</td>
+        <td>College Place</td>
+        <td>Manley North</td>
+        <td>Manley South</td>
+        <td>GoldStein Center</td>
+        <td>Note</td>
+        <td>file:nob-hill.kml</td>
+    </tr>
+    <tr>
+        <td>240</td>
+        <td>MTWRFS</td>
+        <td>Nob Hill</td>
+        <td></td>
+        <td>07:30 AM</td>
+        <td>07:40 AM</td>
+        <td>07:41 AM</td>
+        <td>07:50 AM</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>240</td>
+        <td>MTWRFS</td>
+        <td>Nob Hill</td>
+        <td></td>
+        <td>08:30 AM</td>
+        <td>08:40 AM</td>
+        <td>08:41 AM</td>
+        <td>08:50 AM</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>240</td>
+        <td>SN</td>
+        <td>Nob Hill</td>
+        <td></td>
+        <td>08:31 AM</td>
+        <td>08:41 AM</td>
+        <td>08:42 AM</td>
+        <td>08:51 AM</td>
+        <td>3</td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+<p>
+    Each Line that follows a Direction and Stop Points line and has a Route Code in Column A is a
+    Journey Definition. Column B contains the Day Class, which is a mix of the following codes:
+</p>
+<div class="row-fluid">
+    <table class="offset2 span3 table table-bordered">
+    <tbody>
+    <tr>
+        <th>M</th>
+        <td>Monday</td>
+    </tr>
+    <tr>
+        <th>T</th>
+        <td>Tuesday</td>
+    </tr>
+    <tr>
+        <th>W</th>
+        <td>Wednesday</td>
+    </tr>
+    <tr>
+        <th>R</th>
+        <td>Thursday</td>
+    </tr>
+    <tr>
+        <th>F</th>
+        <td>Friday</td>
+    </tr>
+    <tr>
+        <th>S</th>
+        <td>Saturday</td>
+    </tr>
+    <tr>
+        <th>N</th>
+        <td>Sunday</td>
+    </tr>
+    <tr>
+        <th>K</th>
+        <td>MTWRF</td>
+    </tr>
+    <tr>
+        <th>E</th>
+        <td>SN</td>
+    </tr>
+    <tr>
+        <th>D</th>
+        <td>MTWRFSN</td>
+    </tr>
+    </tbody>
+    </table>
+
+</div>
+<p>
+    You may notice in the above example that some lines have different day designations. The first
+    two do not run on Sunday, but the last run only runs on Saturday and Sunday.
+</p>
+<p>
+    Column C contains the Display Name of the Journey. This name may be displayed on the bus for
+    passengers to identify the bus. Some route numbers may have different display names, due to
+    direction, variation in route, etc. This field will be displayed on the navigator selector on the
+    Busme! Mobile App and website.
+</p>
+<p>
+    Column D contains the VID, which is short for Vehicle Identification Number. You may fill this out
+    if it gives a passenger or driver some better way of identifying the particular bus for the journey.
+    It it is there it will be displayed when a passenger or driver is trying to select the bus on which he
+    or she is to report.
+</p>
+<p>
+    Column E and all the way up to the Column where NOTE appears are to contain time specifications.
+    The issue of time representation may be a complex one, and it contains its own section below.
+    You are to fill out the times in which the bus leaves or arrives at the particular stop point.
+</p>
+<h3>Alternate Journey Patterns</h3>
+<table class="table table-bordered">
+    <tbody>
+    <tr>
+        <th>A</th>
+        <th>B</th>
+        <th>C</th>
+        <th>D</th>
+        <th>E</th>
+        <th>F</th>
+        <th>G</th>
+        <th>H</th>
+        <th>I</th>
+        <th>J</th>
+    </tr>
+    <tr>
+        <td>Stop Points</td>
+        <td>Days</td>
+        <td>Display Name</td>
+        <td>VID</td>
+        <td>College Place</td>
+        <td>Manley North</td>
+        <td>Manley South</td>
+        <td>GoldStein Center</td>
+        <td>Note</td>
+        <td>file:nob-hill.kml</td>
+    </tr>
+    <tr>
+        <td>240</td>
+        <td>SN</td>
+        <td>Nob Hill</td>
+        <td></td>
+        <td>08:31 AM</td>
+        <td></td>
+        <td></td>
+        <td>08:51 AM</td>
+        <td>3</td>
+        <td>file:nob-hill-skip-manley.kml</td>
+    </tr>
+    <tr>
+        <td>240</td>
+        <td>MTWRFS</td>
+        <td>Nob Hill</td>
+        <td></td>
+        <td></td>
+        <td>07:40 AM</td>
+        <td>07:41 AM</td>
+        <td>07:50 AM</td>
+        <td></td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+<p>
+    The Journey Pattern referred to in the column after NOTE appears is the <em>default</em> Journey
+    Pattern. Lines subsequent to the Stop Point lines will place times underneath the Stop Point
+    names, and in the column after NOTE appears, one can place another KML structure or KML file
+    reference. The reason you would place a KML in this column is that the Journey Pattern may
+    have been altered slightly for a particular journey, such as bypassing a street on the particular
+    run. The above example shows that the first journey specified does not have any times listed
+    in the Columns for Manley North and Manley South and the Journey Pattern is a different
+    KML file reference noting a different Journey Pattern, with possibly a different path.
+    In this case, each Stop Point name for which a time is specified must be in the KML file specified,
+    and in the specified order, or an error will occur.
+</p>
+<p>
+    Other situations can state that times at the beginning and the end of the Stop Points maybe left
+    out such as the in the last journey in the above example. This case shows no time in the College
+    Place Stop Point, however it is using the Default Journey Pattern, which presumably has the
+    College Place Stop Point in it. In this case, the Journey completely skips College Place, and is
+    specified to Start at Manley North. Times may be left off the end of a Journey Specification and
+    the journey will end at the Stop Point in which the last time was specified.
+</p>
+
