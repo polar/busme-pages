@@ -1,0 +1,299 @@
+<h1>Journey Builder</h1>
+<p>
+    The Journey Builder tool is where you will start your route planning.
+    The Journey Builder tool page does not define routes and journeys in our database on our servers.
+    It merely helps you to create a spreadsheet in Comma Separated Value (CSV) form,
+    which we call the <em>Service CSV file</em> that you will use in planning a particular <em>Route</em>.
+</p>
+<p>
+    The general procedure is to map out your bus route of <em>StopPoints</em> on the map and the paths
+    in between them. Then, you fill in the names
+    of your <em>StopPoints</em>, fill in the route identifying information in the fields below the map, and
+    then hit the <span class="btn btn-mini">Download CSV File</span> button. This file will be used in defining a
+    <em>Route</em> in which comprises your <em>Networks</em> inside your <em>Deployments</em>.
+</p>
+<p>
+    Due to some flaky problems with browser and browser compatibility, we make every effort to save your work
+    often. It is saved under your account and the Busme! Transportation Site. So, if you fire up the
+    Journey Builder tool, you probably will get
+    the last route you worked on on that site.
+    In any case, it is probably a good idea to save your KML file as well. It is also useful to save your
+    KML file, because you may want to make variations of it, so you can load it anew, and make changes.
+</p>
+<h3><em>StopPoints</em> and <em>Waypoints</em>. What are they?</h3>
+<p><em>StopPoints</em> are places where you usually have a bus stop and a time. It technically is
+    called a <em>TimingPoint</em>, but for most people they represent bus stops. A <em>StopPoint</em> is just a
+    location according to a schedule at which the bus will be passing at a certain time, whether it is actually a
+    bus stop or not. You may simulate a waiting situation by creating two <em>StopPoints</em> almost on top of each
+    other and entering two successive times for each in the Service CSV file.
+    <em>StopPoints</em> are represented by numbered upside-down teardrop markers
+</p>
+
+<p>
+    A <em>Waypoint</em> is just a particular location that the bus passes through on its way from one
+    <em>StopPoint</em> to another. The auto router will try to find routes between stop points using a street
+    finding service. However, it doesn't always get the route you need. You may place a <em>Waypoint</em> in
+    between <em>StopPoints</em> or other <em>Waypoints</em> to help define the desired path.
+    <em>Waypoints</em> do not have any times associated with them and they do not exist in the CSV file. They
+    are represented by green dots on the map.
+</p>
+<h3>1. Give locations to your Stops</h3>
+<p>
+    You will start in <em>Autoroute</em> mode and you must lay down a start <em>StopPoint</em>, represented by
+    <img src='{{ cms:bus:asset_path:yours/markers/route-start.png }}'> marker, and an end
+    <em>StopPoint</em>, which is represented by <img src='{{ cms:bus:asset_path:yours/markers/route-stop.png }}'> marker.
+<p>
+    In <em>Autoroute</em> mode, each placement of a <em>StopPoint</em> or <em>Waypoint</em> (green dots) will
+    result in finding a proper route through the streets between that point and its surrounding points.
+    You may disable <em>Autoroute</em> mode in favor of drawing your own lines. You may disable/enable
+    <em>Autoroute</em> mode by toggling the <span class="btn btn-mini">Autoroute</span> button.
+</p>
+
+<p>
+    You may add <em>StopPoints</em> to the end of the current route by holding down the CTRL key, which will change
+    the cursor to the <img src='{{ cms:bus:asset_path:yours/markers/route-stop.png }}'> marker, and click on the desired
+    location.
+</p>
+
+<h3>2. Modify Your Route</h3>
+
+<p>
+    You may not always get it right the first time. Also, the auto router may not go where you want it to go. You may
+    modify the route in any of following ways.
+</p>
+<dl>
+    <dt>Modify Path</dt>
+    <dd>
+        <p>
+            You may modify the path the bus takes by highlighting the desired path section, known as a <em>Link</em>.
+            A <em>Link</em> highlights by changing the line color to blue.
+            You modify the highlighted <em>Link</em> by clicking on it and dragging it.
+            This action creates a new in between <em>waypoint</em> to a desired location breaking the current link into
+            two links. If the <em>Autorouter</em> is enabled, it will attempt to find a route between the end points of the
+            new links. The <em>Waypoint</em> is represented by a small green dot. You may drag this <em>Waypoint</em>
+            at any time.
+        </p>
+        <p>
+            <strong>NOTE:</strong> Selecting the <em>Link</em> and dragging it breaks the line in two and removes
+            all the geometry between
+            the surrounding <em>Waypoint/StopPoints</em>. If you merely just want to place a <em>Waypoint</em> on the
+            line without modifying the surrounding geometries, hold down the SHIFT key and click the mouse on the
+            desired location on the highlighted <em>Link</em>. The link must be highlighted.
+        </p>
+        <p>
+            <strong>NOTE:</strong>
+            Some problems may exist due to the browser getting confused about mouse placement and movement.
+            If you see that the mouse may breaking and moving a line when you don't want it to, might be one of
+            those confused moments. The workaround is usually to highlight a <em>Stop Point</em>, or <em>Way Point</em>
+            and that may reset it. If it is really confused, since we save your work, try reloading. Unfortunately,
+            you will loose all your <em>Way Points</em>, but you should have the path drawn by them.
+        </p>
+    </dd>
+
+
+    <dt>Create a New StopPoint</dt>
+    <dd>
+        <p>
+            You may create a new <em>StopPoint</em> by either clicking on the
+            <img src='{{ cms:bus:asset_path:add-stoppoint.png }}'>.
+            That action will place a <em>StopPoint</em> immediately after the button you clicked. You may also
+            create a new <em>StopPoint</em> anywhere on the path by using the method above for adding a <em>Waypoint</em>.
+            However, you do so by holding down the CTRL key while dragging it or clicking on it. NOTE: To place
+            the new <em>StopPoint</em> on the <em>Link</em>, you must make sure that the <em>Link</em> is highlighted.
+            Otherwise, you are adding a new <em>StopPoint</em> to the end of the <em>Route</em>.
+        </p>
+        <p>
+            You may add a <em>StopPoint</em> at the end of the <em>Route</em> by holding down the CTRL key and clicking
+            on the the desired location on the map. NOTE: You must hold the CTRL key down through the entire click.
+            Please release the CTRL key after you click up.
+        </p>
+    </dd>
+
+    <dt>Modify Location</dt>
+    <dd>
+        <p>
+            You may modify the locations of any <em>StopPoint</em> or <em>Waypoint</em> by clicking on it and dragging it.
+            You may also modify the location of a <em>StopPoint</em> by clicking on the
+            <span class="btn btn-mini">Locations</span> tab and entering the longitude and latitude separated by a comma.
+        </p>
+    </dd>
+
+    <dt>Enter a Completely New Route</dt>
+    <dd>
+        <p>
+            You may paste a specially crafted KML file into the text box labeled as "Route KML". Typically, you will
+            get one of the KML structures from this tool. You may have created a route for a particular bus route. The
+            resulting CSV file has a KML structure in the "Stop Points" line in the CSV file. You may cut and paste the full
+            contents of that table cell into the Route KML box and hit the TAB key, which registers the change with the
+            browser.
+        </p>
+    </dd>
+
+    <dt>Delete StopPoints or Waypoints</dt>
+    <dd>
+        <p>
+            You may delete any <em>StopPoint</em> or <em>Waypoint</em> by hovering over it and hitting the DEL or
+            BACKSPACE keys. You will notice the <em>StopPoint/Waypoint</em> go darker as you hover over it.
+            You may also delete a <em>StopPoint</em> by hitting its
+            <img src="{{ cms:bus:asset_path:delete-16x16.png }}"> button.
+        </p>
+    </dd>
+
+    <dt>Lock StopPoints</dt>
+    <dd>
+        <p>
+            You may want to lock a <em>StopPoint</em> to prevent any inadvertent deletion or change in location by dragging.
+            You may lock/unlock the <em>StopPoint</em> by hitting its Anchor button.
+            The icon <img src='{{ cms:bus:asset_path:anchor-up.png }}'> signifies that the <em>StopPoint</em> is unlocked.
+            The icon <img src='{{ cms:bus:asset_path:anchor-down.png }}'> signifies that the <em>StopPoint</em> is locked.
+        </p>
+    </dd>
+
+    <dt>Toggle AutoRoute</dt>
+    <dd>
+        <p>
+            You may need to create specialized paths where the street router doesn't have the information or just is
+            wrong. Some street routers take into account current construction blockages, which just may get in the way
+            of your future planning. Also, you may have a special route around a parking lot or path that is not
+            registered with the service. When you turn off the <em>Autorouter</em> just straight lines are drawn between
+            <em>StopPoints/Waypoints</em>. It's usually a good idea to lock <em>StopPoints</em> you don't
+            want to move as clicking on a link destroys it, just in case.
+        </p>
+    </dd>
+
+    <dt>Revert to a previous version</dt>
+    <dd>
+        <p>
+            Your editing session remembers the changes you make. You may always revert to a previous one by hitting the
+            <span class="btn btn-mini">Revert</span> button, but you cannot move forward. You may also at any time, save
+            the Route KML file by copying the full contents of the text box by hitting CTRL-A and CTRL-C
+            (on most browsers) and save it to a simple text file or spreadsheet.
+        </p>
+        <p>
+            NOTE: The revert does not remember <em>Waypoint</em> additions, but the geometry will be preserved from
+            previous edits.. We will rectify this issue at some point in the future.
+        </p>
+    </dd>
+
+    <dt>Reroute the entire path</dt>
+    <dd>
+        <p>
+            You may just reroute the entire line by hitting the <span class="btn btn-mini">Reroute</span> button. NOTE,
+            this action reroutes the entire path from the first <em>StopPoint</em> to the last.
+        </p>
+    </dd>
+
+    <dt>Reverse your route</dt>
+    <dd>
+        <p>
+            You may reverse your route by hitting the <span class="btn btn-mini">Reverse</span> button. This action
+            will NOT automatically reroute the entire path.
+        </p>
+    </dd>
+    <dt>Vertices</dt>
+    <dd>
+        <p>
+            At times you may load a KML file. This file preserves the geometry between <em>StopPoints</em>, but it will
+            not preserve any of the <em>Waypoints</em> that you put down. This situation could lead to problems because
+            if you try to modify any Link in between <em>StopPoints</em> it will break the entire <em>Link</em> into
+            two straight lines. To protect against this, you may make all the vertices of the route into
+            <em>Waypoints</em>. This action will allow you to edit small parts of the path in a <em>Link</em>.
+            You accomplish this action by toggling the <span class="btn btn-mini">Vertices</span> button. Clicking on
+            the button again will eliminate all the <em>Waypoints</em> keeping the resulting geometry.
+        </p>
+    </dd>
+</dl>
+<h3>3. Saving Your Work</h3>
+<p>
+    As always, save early and often. The bulk of what you are creating is the KML file. If you feel like you
+    have done enough work, use the <span class="btn btn-mini">Download KML</span> button to save the KML in a
+    safe place. However, that is sometimes difficult to remember.
+</p>
+<p>
+    We have added a feature that saves the end state of your editing to our databases at a period of 30 seconds. After
+    a save, if you reload the page you will have your last editing session restored to the point at which it was
+    saved. However, we do not save the editing history. You will not have any history to which you may revert back.
+</p>
+<p>
+    <strong>It is not safe if you have more than one editing session for the same municipality simultaneously.</strong>
+    We currently only distinguish editing sessions based on the current municipality and your login.
+    Multiple editing sessions will overwrite each other. <strong>Be aware. Save early and often</strong>
+</p>
+
+<h3>4. Enter Names for your <em>StopPoints</em></h3>
+<p>
+    The street routing service will try to find a suitable name for your Stop location. However, that
+    may not be specific enough or correct, and you probably already know what you want it to be. Just type it in. Be
+    sure to hit the TAB key.
+</p>
+<p><strong>NOTE:</strong> The StopPoint Names are really just names for which you distinguish your StopPoints.
+    Busme! doesn't really use them other than checking the consitency of the CSV file with the KML file. They are
+    more for you to identify where you should be entering the times. We may use these in the future if we were
+    to produce user facing schedules. Currently, we have no plans to do that, but it's better to keep it correct
+    within your system.
+</p>
+
+<h3>5. Add Route and Service information</h3>
+<p>
+    Below the map there are six fields for you to fill in about this route:
+</p>
+<dl>
+    <dt>Route Name</dt>
+    <dd>This field contains the name of the route that will be displayed on the mobile devices. Keep it short and distinctive</dd>
+
+    <dt>Route Code</dt>
+    <dd>This field contains a short, usually 3-5 characters, number that identifies journeys on your route. Ex <b>334</b> <b>1034C</b></dd>
+
+    <dt>Route Sort</dt>
+    <dd>This field contains a number that specifies the order in which you want the route to show up against other routes.
+        Some companies sort by the last two numbers, Ex 43, 343, 543, are of the same route system, but different than
+        the 245, 345. In order to sort these routes according to the last two numbers in the Route Code, you would
+        use something like 430, 433, 435, 452, 453 to sort them in that order.</dd>
+
+    <dt>Direction</dt>
+    <dd>This field contains one word of your choice to describe the direction of the route. Ex. "Inbound", "Outbound"</dd>
+
+    <dt>Start Date</dt>
+    <dd>This field contains the Start Date of the Service for this route in the date format that is
+        specified for the municipality.</dd>
+
+    <dt>End Date</dt>
+    <dd>This field contains the End Date of the Service inclusive, i.e. the last day of operation, for this route in the date format that is
+        specified for the municipality.</dd>
+</dl>
+<p>
+    You will be able to add exception dates to the downloaded file.
+</p>
+
+<h3>6. Download the <em>Service CSV File</em></h3>
+<p>
+    This tool helps you create a <em>Service CSV File</em> that you will use to add times to your bus stops.
+    After you have filled in all the fields correctly, have left <em>Add Stops</em> mode, verified your information,
+    you may hit the <span class="btn btn-mini">Download Service CSV File</span> button. This action will download a
+    CSV file to your machine. You may open it up with your favorite spreadsheet program, e.g. LibreOffice Calc,
+    MS Excel, etc.
+</p>
+<p>
+    NOTE: The spreadsheet programs have problems with a single table cell containing more than 32K characters.
+    To alleviate this problem the KML is placed in a separate file in the same folder as the
+    <em>Service CSV File</em>. The <em>Service CSV File</em> will contain a "file:" reference in the table cell
+    that would have contained the KML. This reference is relative to the folder the <em>Service CSV File</em> is in.
+    This folder will be downloaded as a ZIP file.
+</p>
+
+<h3>Beyond The Journey Builder Tool</h3>
+<p>
+    The Journey Builder Tool helps you build the <em>Service CSV Files</em> you need to plan out a Busme Network.
+    Beyond this action, you fill in the times for your Route(s) in this file, and put this file in a folder.
+    You may edit this file in your favorite spreadsheet program (LibreOffice, Excel, etc.). After adding times,
+    you MUST always save the file in CSV (Text) format and put it into a folder with your other CSV files for your
+    Network. When you are ready to submit your Network you will create a ZIP File from that
+    folder containing these route definition files. You then upload that ZIP file to the Network Planning Page.
+</p>
+
+<h3>Feedback</h3>
+<p>
+    If you have feed back you may contact us by hitting the <span class="btn btn-mini">Feedback</span> button in the lower
+    right corner. You may opt to include a screen shot, but unfortunately, it has difficulty grabbing the
+    map image at the moment. Please leave a descriptive narrative of any problems you encounter.
+</p>

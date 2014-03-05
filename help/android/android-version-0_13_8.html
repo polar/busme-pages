@@ -1,0 +1,75 @@
+<h1>Quick Help for Busme! Android Version 0.13.8+</h1>
+<dl>
+    <dt>SingleTap on Map</dt>
+    <dd>
+        <ul>
+            <li>If performed on a bus blip, the app will focus its attention on that bus, removing all others from view. It
+                will turn the route and blip green.
+            </li>
+            <li>If performed on a route path, the app will remove all routes and buses that do not pass through that point.
+            </li>
+            <li>Otherwise, this gesture brings up the zoom in/out buttons.</li>
+        </ul>
+    </dd>
+    <dt>Long Press on the Map</dt>
+    <dd>
+        <ul>
+            <li>If performed on a bus blip, it will try to bring up a dialog for reporting locations on that bus. This
+                requires that you log on and if you have not logged on before or in a while, you will be brought to an
+                authorization page.
+            </li>
+            <li>Otherwise, it is ignored</li>
+        </ul>
+    </dd>
+    <dt>Double Tap on the Map</dt>
+    <dd>This gesture will center the map on your location. This is how you can find yourself on the map if you flung the
+        map too far away.
+    </dd>
+    <dt>Press and Drag on the Map</dt>
+    <dd>This gesture will drag the map around with your finger.</dd>
+    <dt>Pinch or Spread with two fingers on the Map</dt>
+    <dd>These two finger gestures will zoom the map in and out, respectively, in the general vicinity of your touches.
+    </dd>
+    <dt>Single Tap on the Routes List</dt>
+    <dd>
+        <ul>
+            <li>If looking at just routes, this gesture will go into a mode where you are viewing only buses on that route, or
+                just the paths of the route if there are no buses. The map will center on the extent of the paths on the route,
+                trying to encompass them all in a single view.
+            </li>
+            <li>If looking at just buses on a single route, this gesture will go into a mode where you are looking at only the
+                bus you selected, as if you single tapped on its blip. (see above).
+            </li>
+            <li>If you are looking at only one bus that is green, this gesture will center the map on the current location of
+                the bus.
+            </li>
+        </ul>
+    </dd>
+    <dt>Long Press on the Routes List</dt>
+    <dd>
+        <ul>
+            <li>If looking at just routes, this gesture will highlight the route and any buses on that route in red for five
+                seconds.
+            </li>
+            <li>If looking at just one route, this gesture will highlight the route and the bus you selected in red and
+                center the map on its position.
+            </li>
+            <li>If looking at just one bus in green, this gesture will center the map on the bus' location.</li>
+        </ul>
+    </dd>
+    <dt>Swipe Right on the Routes List</dt>
+    <dd>This gesture will move the Routes List out of the way and expose a small button in the upper right hand corner of
+        the screen. You click on this button to get the Routes List back.
+    </dd>
+    <dt>The Back Button</dt>
+    <dd>The Back Button is used to back out of your various bus selections. Usually you start in SHOW_ALL,
+        which shows all the routes and buses, but only the route names.  After a single ta on the Routes List, you
+        progress to SHOW_ROUTE, which shows just the paths and buses of a
+        single route, If you tap on the routes list again on a particular line you progress to SHOW_VEHICLE, which is
+        just displaying a single bus, in which its path and blip are in green. You may make different bus selections
+        in between based on a single tap on the map that may exclude some routes.These selections stack up in such a way
+        that you may use the back button to get back to a previous selection.
+    </dd>
+    <dt>The Menu Button</dt>
+    <dd>There are many menu options</dd>
+

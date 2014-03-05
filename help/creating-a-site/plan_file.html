@@ -99,6 +99,11 @@
     Route Name definition. If you are uploading this plan file as a definition for an entire Deployment, this line
     will cause the creation of the network named in column B.
 </p>
+<p>
+    A Network line is optional. If you are planning the entire Deployment, and a Network is not specified,
+    the first network in the Deployment, if it exists, will be used. If it does not exist, a Network called
+    "DefaultNetwork" is created, and the routes are defined within that network.
+</p>
 <h3>Route Name</h3>
 <table class="table table-bordered">
     <tbody>
@@ -131,11 +136,21 @@
     If there are subsequent occurrences of Route Name lines for the same Route Code, the last definition
     read will prevail. You're allowed to have them, just make sure they are the same for all files.
 </p>
+<p>
+    The route code is specified in a Journey. Journey's may specify route codes that do not
+    match Route Name lines. If that is the case, it is as if the Route Name is the route code, and
+    its sort number is the route code, if the route code is a number, or is zero.
+</p>
 <h3>Start Date and End Date</h3>
 <p>
     These fields are pretty self explanatory, the are the start date and the end date of the service
     applied to anything below it. They must each appear together in the file, if you specify one,
     you must subsequently specify the other.
+</p>
+<p>
+    If you use a 06/05/2014 sort of date, it will be interpreted according to the Date Format
+    you specified for your Busme! Transportation Site. If you chose MM/DD/YYYY that date would be
+    June 5, 2014, whereas if you chose DD/MM/YYYY, that date would be May 6, 2014.
 </p>
 <h3>Exception Dates</h3>
 <table class="table table-bordered">
@@ -175,6 +190,11 @@
     Journey specification will not apply within the service date range. You will get
     a warning if one of the exception dates is NOT in between the current Start and End Dates.
 </p>
+<p>
+    If you use a 06/05/2014 sort of date, it will be interpreted according to the Date Format
+    you specified for your Busme! Transportation Site. If you chose MM/DD/YYYY that date would be
+    June 5, 2014, whereas if you chose DD/MM/YYYY, that date would be May 6, 2014.
+</p>
 <h3>Direction</h3>
 <table class="table table-bordered">
     <tbody>
@@ -189,8 +209,9 @@
     </tbody>
 </table>
 <p>
-    The Direction in column B usually specifies a one word designation of which direction the next journeys
-    that are specified. Please keep it short as this element will be displayed to distinguish journeys.
+    In the Direction line, column B specifies a one (or two) word designation in which direction
+    the next journeys that are specified are traveling. Please keep it short as this element is
+    displayed to distinguish journeys in the list of journeys.
     Examples, are Inbound, Outbound, Downtown, etc. A Direction must be specified immediately before a
     Stop Points line.
 </p>
@@ -228,8 +249,8 @@
     each Stop Point start in Column E and continue until NOTE appears. In the column after NOTE,
     the KML file that specifies the default Journey Pattern for this direction of the Route. The
     names that comprise the list of Stop Points must occur in the KML file in the order they
-    are shown, otherwise, an error will occur.  That is why we generate the CSV file for you to
-    use so that it is correct.
+    are shown, otherwise, an error will occur.  That reason is why we generate the CSV file
+    for you so that it is correct.
 </p>
 <p>
     If the KML is larger than 8K characters, the KML may reside in a separate file. When it is this
@@ -381,8 +402,10 @@
 </p>
 <p>
     Column E and all the way up to the Column where NOTE appears are to contain time specifications.
-    The issue of time representation may be a complex one, and it contains its own section below.
-    You are to fill out the times in which the bus leaves or arrives at the particular stop point.
+    The issue of {{ cms:bus:page:link /help/times, 'time representation' }} may be a complex one,
+    and it contains its own {{ cms:bus:page:link /help/times, 'help section' }}.
+    In each column under a Stop Point, you fill out the time in which the bus leaves or arrives
+    at the particular stop point. Some cells may be left empty. See below.
 </p>
 <h3>Alternate Journey Patterns</h3>
 <table class="table table-bordered">
@@ -457,4 +480,119 @@
     specified to Start at Manley North. Times may be left off the end of a Journey Specification and
     the journey will end at the Stop Point in which the last time was specified.
 </p>
+<h2>The Busme! CSV Plan Zip File</h2>
+<p>
+    You must upload a single file for processing into a Deployment or Network. Since, you may have
+    many CSV files describing multiple routes and in conjunction with multiple KML files and place
+    them into a folder, we ask you to Zip up the folder.
+</p>
+<p>
+    This process does two things. It consolidates an
+    entire folder structure into a single file, which makes uploading or downloading simple. Secondly,
+    it compresses the file to almost a tenth of its original size, which makes the upload/download
+    process more efficient.
+</p>
+<h3>Folder Structure of a Busme! CSV Plan</h3>
+<p>
+    The folder structure of a Busme! CSV Plan may be arbitrary. However, there is a logic to its
+    processing.
+</p>
+<p>
+    First off, the Busme! CSV compiler only looks for files with the ".csv" suffix. Files that
+    end in ".xls" (for MS Excell) or ".ods" (for LibreOffice/StarOffice) are ignored. Even if
+    a file is indeed a CSV file, if it does not have the ".csv" suffix, it will not be
+    processed.
+</p>
+<h3>Embedded Zip Files</h3>
+<p>
+    One may zip up a folder containing a particular network (make sure that all the CSV files
+    in that folder have a Network Line). Being that it is cumbersome to unzip that file into
+    another folder, one can just place Zip files inside the folder before zipping that folder.
+    The Busme! CSV Compiler will unzip all files with ".zip" suffixes in place.  Therefore, you
+    may define an entire Deployment by placing all the zipped Network Folders into a Folder, and
+    zipping that for upload.
+</p>
+<p>
+    For example, The folder Network_1 may have the following Busme! contents:
+</p>
+
+<ul><li>Folder: Network_1
+    <ul><li>Folder: Route_240
+        <ul>
+            <li>Route_240_Service_1.csv</li>
+            <li>Route_240_Service_2.csv</li>
+            <li>Route_240_Service_1.kml</li>
+            <li>Route_240_Service_2.kml</li>
+        </ul><li>Folder: Route_240C
+        <ul>
+            <li>Route_240C_Service_1.csv</li>
+            <li>Route_240C_Service_1.kml</li>
+        </ul>
+    </li></ul></li>
+</ul>
+<p>
+    This folder is then zipped up into "Network_1.zip". Then,
+    we may copy it into a folder called "Deployment_1" with
+    another folder "Network_2".
+</p>
+<ul>
+    <li>Folder: Deployment_1
+        <ul><li>File: Network_1.zip</li>
+            <li>Folder: Network_2
+                <ul><li>Folder: Route_350
+                    <ul>
+                        <li>Route_350_Service_1.csv</li>
+                        <li>Route_350_Service_2.csv</li>
+                        <li>Route_350_Service_1.kml</li>
+                        <li>Route_350_Service_2.kml</li>
+                    </ul>
+                </li></ul></li>
+        </ul>
+    </li>
+</ul>
+<p>
+    And then, zip up the "Deployment_1" folder into "Deployment_1.zip" and upload that file
+    to the Busme! CSV Plan processor.
+</p>
+<h3>Folder Structure of a Generated Busme! CSV Plan</h3>
+<p>
+    If you choose to use our tool to generate a Busme! CSV Plan from our internal representation
+    it will not come out in the same organization it went int. We do not save your file. We
+    process it into our internal data storage, and get rid of the file. We do that, because you
+    may make limited changes to the data. Some of those changes may be in the geographic path
+    between two Stop Points, which would change the KML used for certain journeys.
+</p>
+<p>
+    The structure follows this basic structure which you may imply from network "Network_1" that
+    contains two routes that have Route Codes of 240 and 240C, and network "Network_2" that contains route
+    with the Route Code of 350:
+</p>
+<ul>
+    <li>Folder: Deployment_1
+    <ul><li>Folder: Network_1
+        <ul><li>Folder: Route_240
+            <ul>
+                <li>Route_240_Service_1.csv</li>
+                <li>Route_240_Service_2.csv</li>
+                <li>Route_240_Service_1.kml</li>
+                <li>Route_240_Service_2.kml</li>
+            </ul><li>Folder: Route_240C
+            <ul>
+                <li>Route_240C_Service_1.csv</li>
+                <li>Route_240C_Service_1.kml</li>
+            </ul>
+        </li></ul></li>
+        <li>Folder: Network_2
+            <ul><li>Folder: Route_350
+                <ul>
+                    <li>Route_350_Service_1.csv</li>
+                    <li>Route_350_Service_2.csv</li>
+                    <li>Route_350_Service_1.kml</li>
+                    <li>Route_350_Service_2.kml</li>
+                </ul>
+            </li></ul></li>
+    </ul>
+    </li>
+</ul>
+
 
