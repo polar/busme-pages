@@ -1,101 +1,110 @@
 <h1>Creating a Busme! Transit Site</h1>
 <p>
-    Creating a Busme! Transit site is the first operation you need to do. Before you can create
-    a Busme! Transit Site, you first need to <a href="/help/creating-an-account">create an account</a>
-    using your email. One you have that, and you have successfully logged in, then may you click to
-    <a href="/websites/my_index">My Sites</a>&gt;<a href="/websites/new">New Site</a>. Unless approved
-    by us, you will only be allowed to create 2 sites.
+  Creating a Busme! Transit site is the first operation you need to do. Before you can create
+  a Busme! Transit Site, you first need to <a href="/help/creating-an-account">create an account</a>
+  using your email. One you have that, and you have successfully logged in, then may you click to
+  <a href="/websites/my_index">My Sites</a>&gt;<a href="/websites/new">New Site</a>. Unless approved
+  by us, you will only be allowed to create 2 sites.
 </p>
 <h2>What comprises a Busme! Transit Site</h2>
 <p>
-    When you create a new Busme! Transit Site, you must enter in some identifying information for
-    your transit site. You will be given a form to fill in certain information and a map. The map
-    is used to place an icon pointer to specify the default location of your system. Usually, you may
-    select the center of town or where you believe the center of the area of your route coverage
-    will be.
+  When you create a new Busme! Transit Site, you must enter in some identifying information for
+  your transit site. You will be given a form to fill in certain information and a map. The map
+  is used to place an icon pointer to specify the default location of your system. Usually, you may
+  select the center of town or where you believe the center of the area of your route coverage
+  will be.
 </p>
 <p>
-    NOTE: Your browser may ask you to allow it to use your computer's location. If you allow it,
-    the map will zoom into your location as it assumes you are probably setting up a system where
-    you are. You can, of course, change that.
+  NOTE: Your browser may ask you to allow it to use your computer's location. If you allow it,
+  the map will zoom into your location as it assumes you are probably setting up a system where
+  you are. You can, of course, change that.
 </p>
 <p>
-    Once you select a location, the page will fill in the Longitude and Latitude of your placement,
-    and attempt to select the correct time zone for the area.
+  Once you select a location, the page will fill in the Longitude and Latitude of your placement,
+  and attempt to select the correct time zone for the area.
+</p>
+<p>
+  NOTE: This action may not always be successful, but you can change it through a drop down list.
 </p>
 <h2>Input Fields</h2>
 <dl>
-    <dt>
-        Name
-    </dt>
-    <dd>
-        This field should contain the name of your installation. We would like you to follow
-        some standard in setting this name, but we are not enforcing that. We would like you to use:
-        "agency, city, state" as a name, such as "NPLoop, New Paltz, NY"</dd>
-    <dt>
-        http://sites.busme.us
-    </dt>
-    <dd>
-        This field contains the url at which your site will be accessible. It can be anything
-        that are small characters and dashs. It will be converted from the Name field, but can
-        be changed. For instance "NPLoop, New Paltz, NY" will be "nploop-new-paltz-ny"</dd>
-    <dt>
-        Longitude
-    </dt>
-    <dd>
-        This contains the Longitude of the default location. It will be filled in upon placing or
-        moving the icon on the map.
-    </dd>
-    <dt>
-        Latitude
-    </dt>
-    <dd>
-        This contains the Latitude of the default location. It will be filled in upon placing or
-        moving the icon on the map.
-    </dd>
-    <dt>
-        Time Zone
-    </dt>
-    <dd>
-        This contains the time zone of the area. An attempt to find the correct time zone will be
-        performed when you move the location icon. However, due to some service restrictions on the
-        provider of that information, it may not work. If it did not work, it will say "Africa/Adbidjan",
-        which is the first selection. If it did not select the correct one for your area, please select
-        it manually.
-    </dd>
-    <dt>
-        Date Format
-    </dt>
-    <dd>
-        This selects the Date Format you would like to use. You can choose from YYYY-MM-DD, DD/MM/YYYY,
-        or MM/DD/YYYY. Dates are usually displayed only in the logs, as most of our displays
-        are visual and map related for the current day. However, this setting also governs the interpretation
-        of your input data should you use MM/DD/YYYY or DD/MM/YYY in your schedule files. In any case,
-        if you use YYYY-MM-DD format for your dates, they will be correctly interpreted regardless of
-        this setting.
-    </dd>
-    <dt>
-        Description
-    </dt>
-    <dd>
-        You may enter a short description. This text will be only displayed in a list of Busme! Transit Sites.
-    </dd>
+  <dt>
+    Name
+  </dt>
+  <dd>
+    This field should contain the name of your installation. We would like you to follow
+    some standard in setting this name, but we are not enforcing that. We would like you to use:
+    "agency, city, state" as a name, such as "NPLoop, New Paltz, NY"
+  </dd>
+  <dt>
+    http://sites.busme.us/
+  </dt>
+  <dd>
+    This field contains the url at which your site will be accessible. It can be anything
+    that are small characters and dashes. It will be initially filled in from the Name field, but can
+    be changed. For instance "NPLoop, New Paltz, NY" will initially be set to "nploop-new-paltz-ny"
+  </dd>
+  <dt>
+    Longitude
+  </dt>
+  <dd>
+    This contains the Longitude of the default location. It will be filled in upon placing or
+    moving the icon on the map.
+  </dd>
+  <dt>
+    Latitude
+  </dt>
+  <dd>
+    This contains the Latitude of the default location. It will be filled in upon placing or
+    moving the icon on the map.
+  </dd>
+  <dt>
+    Time Zone
+  </dt>
+  <dd>
+    This contains the time zone of the area. An attempt to find the correct time zone will be
+    performed when you move the location icon. However, due to some service restrictions on the
+    provider of that information, it may not work. If it did not work, it will say "Africa/Adbidjan",
+    which is the first selection. If it did not select the correct one for your area, please select
+    it manually from the drop down list.
+  </dd>
+  <dt>
+    Date Format
+  </dt>
+  <dd>
+    This field selects the Date Format you would like to use. You can choose from YYYY-MM-DD, DD/MM/YYYY,
+    or MM/DD/YYYY. Dates are usually displayed only in the logs, as most of our displays
+    are visual and map related for the current day. However, this setting also governs the interpretation
+    of your input data should you use MM/DD/YYYY or DD/MM/YYY in your schedule files. In any case,
+    if you use YYYY-MM-DD format for your dates, they will be correctly interpreted regardless of
+    this setting.
+  </dd>
+  <dt>
+    Description
+  </dt>
+  <dd>
+    You may enter a short description. This text will be only displayed in a list of Busme! Transit Sites.
+  </dd>
 </dl>
 <h3>Create Your Site</h3>
 <p>
-    You create your site by hitting the <span class="btn btn-mini">Create</span> button. At this point
-    our system must set your site up, and you will be given a spinner and a progress bar.
-    It may take a few minutes, depending upon load, or queued wait times. Your browser may time out if it
-    the process is taking too long. It only times out that you do not believe that you are hung up. You
-    may reload your "My Sites" and it should appear there when it is ready.
+  You create your site by hitting the <span class="btn btn-mini">Create</span> button. At this point
+  our system must set your site up, and you will be given a spinner and a progress bar.
+  It may take a few minutes, depending upon load, or queued wait times. Your browser may time out if it
+  the process is taking too long. It only times out that you do not believe that you are hung up. You
+  may reload your "My Sites" and it should appear there when it is ready.
 </p>
 <p>
-    After your site is created, you may be taken into your site's administration page. You will be automatically
-    signed in, and you will have the Roles of "Super", "Planner", and "Operator". From here, you may start to
-    use the <em>Journey Builder</em> tool, download your CSV files, fill in the schedules, and upload your
-    plan files, and activate your installation, which exposes it to the public.
+  After your site is created, you may be taken into your site's administration page. You will be automatically
+  signed in, and you will have the Roles of "Super", "Planner", and "Operator"
+  (See <a href="/help/creating-an-account">Creating an Account</a>).
 </p>
 <p>
-    In order to understand the layout of the administration page, you must understand the structure of a
-    Busme! Transit Site, and the management of it <a href="/help/creating-a-site/mangement">here</a>.
+  From here, you may start to use the <em>Journey Builder</em> tool, download your CSV files, fill in the schedules,
+  and upload your plan files, and activate your installation.
+</p>
+<p>
+  In order to understand the layout of the administration page, you must understand the structure of a
+  Busme! Transit Site, and the management of it.
+  <a href="/help/creating-a-site/management">Click here for site management help</a>.
 </p>

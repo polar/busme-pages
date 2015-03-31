@@ -1,278 +1,304 @@
 <h1>Time Representation in Busme! CSV Plan Files</h1>
 <p>
-    Times in Busme! CSV files can be somewhat complex. Strangely enough, its complexity is driven
-    by the need for simplicity in how one views time representations. It is also driven by the way
-    some spreadsheets display time, and how entering a particular time representation will be immediately
-    altered, sometimes annoyingly so, by the spreadsheet program itself. Therefore, we have a number
-    of rules that govern how the time is calculated in a Stop Point's time columns and in relation to
-    other times in the spreadsheet.
+  Times in Busme! CSV files can be somewhat complex. Strangely enough, its complexity is driven
+  by the need for simplicity in how one views time representations. It is also driven by the way
+  some spreadsheets display time, and how entering a particular time representation will be immediately
+  altered, sometimes annoyingly so, by the spreadsheet program itself. Therefore, we have a number
+  of rules that govern how the time is calculated in a Stop Point's time columns and in relation to
+  other times in the spreadsheet.
 </p>
 <h3>Time is in minutes from midnight</h3>
 <p>
-    Perhaps, the first thing that would be beneficial is for you to understand how the time is represented
-    internally, which is really quite simple. A departure/arrival time for a particular Stop Point is
-    stored as the number of <em>minutes from midnight</em> of a particular service day. Furthermore, the
-    number may be negative (minutes before midnight) and the number may be a floating point number, such
-    as 624.5, which would be 624 minutes and 30 seconds after midnight.
-    The time in <em>minutes from midnight</em> is interpreted in relation to the particular time zone of
-    the Stop Point, if specified, otherwise in the default time zone of the Busme! Transit Site.
+  Perhaps, the first thing that would be beneficial is for you to understand how the time is represented
+  internally, which is really quite simple. A departure/arrival time for a particular Stop Point is
+  stored as the number of <em>minutes from midnight</em> of a particular service day. Furthermore, the
+  number may be negative (minutes before midnight) and the number may be a floating point number, such
+  as 624.5, which would be 624 minutes and 30 seconds after midnight.
+  The time in <em>minutes from midnight</em> is interpreted in relation to the particular time zone of
+  the Stop Point, if specified, otherwise in the default time zone of the Busme! Transit Site.
 </p>
 <p>How can the time be negative?</p>
 <p>
-    In places where buses
-    run all night long, the start of a route on a particular day, say Saturday, may actually start late Friday
-    night. However, that journey is not a bus that is actually scheduled to run as a Friday bus. It is a
-    Saturday bus, and its start time may be 11:30 PM the previous day. Therefore, this particular
-    journey's internal start time would be -30.0.
+  In places where buses
+  run all night long, the start of a route on a particular day, say Saturday, may actually start late Friday
+  night. However, that journey is not a bus that is actually scheduled to run as a Friday bus. It is a
+  Saturday bus, and its start time may be 11:30 PM the previous day. Therefore, this particular
+  journey's internal start time would be -30.0.
 </p>
-<p>Can time can be greater than 24 hours?</p>
+<p>Can time can be greater than 24 hours (i.e. 1440.0 minutes)?</p>
 <p>
-    Yes. For example in university areas
-    where the Friday bus continues its run into the wee hours of Saturday morning,
-    such as 12:30 AM, and 1:00 AM at some stops. These times would be internally represented as
-    1470 and 1500 respectively.
+  Yes. For example in university areas
+  where the Friday bus continues its run into the wee hours of Saturday morning,
+  such as 12:30 AM, and 1:00 AM at some stops. These times would be internally represented as
+  1470.0 and 1500.0 respectively.
 </p>
 <h3>Entering Time</h3>
 <p>
-    Entering the time in <em>minutes from midnight</em> may be convenient and accurate. However, looking
-    at a public schedule in which time is represented as "02:34 PM" or "14:34", it is hard to convert into
-    minutes on the fly and eyeball check it to see if the data entry was typed correctly. Therefore, we accept
-    a number of different formats and rules for processing time representations.
+  Entering the time in <em>minutes from midnight</em> may be accurate. However, it is not convenient. Looking
+  at a public schedule in which time is represented as "02:34 PM" or "14:34", it is hard to convert into
+  minutes on the fly and eyeball check it to see if the data entry was typed correctly. Therefore, we accept
+  a number of different formats and rules for processing time representations.
 </p>
 <p>
-    One notable problem is that sometimes spreadsheet programs will automatically convert an entered time
-    into its default time format. For instance, you may enter a 24 hour time of "15:30" and the spreadsheet will
-    immediately change it to "3:30:00 PM". These spontaneous conversions may also be problematic when
-    you are trying to enter times that are greater than 24 hours. A spreadsheet program may convert your time
-    entered for "25:45" as "01:45" immediately, which looses the connotation of the time being the next day.
+  One notable problem is that sometimes spreadsheet programs will automatically convert an entered time
+  into its default time format. For instance, you may enter a 24 hour time of "15:30" and the spreadsheet will
+  immediately change it to "3:30:00 PM". These spontaneous conversions may also be problematic when
+  you are trying to enter times that are greater than 24 hours. A spreadsheet program may convert your time
+  entered for "25:45" as "01:45" immediately, which looses the connotation of the time being the next day.
 </p>
 <h4>Entering time as literals</h4>
 <p>
-    One may solve this problem as just entering all times as literals in the cells. In some spreadsheets,
-    you have to do the extra work of remembering to explicitly formatting the cells to be text literals. Alternatively,
-    you must enter each time with an explicit tick (') mark in front of the time, and the conversion will not happen.
-    Entering "'25:34" will be displayed in the spreadsheet as "25:34".
-    With this approach you may represent times are before midnight by using a preceding tilde (~), such as "'~11:30 PM".
-    This cell would be parsed as 11:30 PM, but because of the tilde(~) it signifies the previous day, which would be
-    calculated as 1410 - 1440 = -30.  However, in a spreadsheet, a literal is not a time, and will not be interpreted
-    as such in a spreadsheet. Unfortunately, entering time as literals eliminates some nifty stuff you
-    can do with spreadsheets, like using TIME formulas.
+  One may solve this problem as just entering all times as literals in the cells. In some spreadsheets,
+  you have to do the extra work of remembering to explicitly formatting the cells to be text literals. Alternatively,
+  you must enter each time with an explicit tick (') mark in front of the time, and the conversion will not happen.
+  Entering "'25:34" will be displayed in the spreadsheet as "25:34".
+  With this approach you may represent times are before midnight by using a preceding tilde (~), such as "'~11:30 PM".
+  This cell would be parsed as 11:30 PM, but because of the tilde(~) it signifies the previous day, which would be
+  calculated as 1410 - 1440 = -30. However, in a spreadsheet, a literal is not a time, and will not be interpreted
+  as such in a spreadsheet. Unfortunately, entering time as literals eliminates some nifty stuff you
+  can do with spreadsheets, like using TIME formulas.
 </p>
 <h4>Using TIME Formulas</h4>
 <p>
-    Some spreadsheets allow you to use formulas on time. One we like is going across a number of cells horizontally
-    given that going from one Stop Point to the next would take a specified duration. For example.
+  Some spreadsheets allow you to use formulas on time. One we like is going across a number of cells horizontally
+  given that going from one Stop Point to the next would take a specified duration. For example.
 </p>
 <table class="table table-bordered">
-    <tbody>
-    <tr>
-        <th></th>
-        <th>A</th>
-        <th>B</th>
-        <th>C</th>
-        <th>D</th>
-        <th>E</th>
-        <th>F</th>
-        <th>G</th>
-        <th>H</th>
-        <th>I</th>
-        <th>J</th>
-    </tr>
-    <tr>
-        <th>7</th>
-        <td>Stop Points</td>
-        <td>Days</td>
-        <td>Display Name</td>
-        <td>VID</td>
-        <td>College Place</td>
-        <td>Manley North</td>
-        <td>Manley South</td>
-        <td>GoldStein Center</td>
-        <td>NOTE</td>
-        <td>file:nob-hill.kml</td>
-    </tr>
-    <tr>
-        <th>8</th>
-        <td>240</td>
-        <td>MWF</td>
-        <td>Nob Hill</td>
-        <td>VID</td>
-        <td>07:30:00 AM</td>
-        <td>=E8+TIME(0,10,0)</td>
-        <td>=F8+TIME(0,2,0)</td>
-        <td>=G8+TIME(0,8,0)</td>
-        <td></td>
-        <td></td>
-    </tr>
-    </tbody>
+  <tbody>
+  <tr>
+    <th></th>
+    <th>A</th>
+    <th>B</th>
+    <th>C</th>
+    <th>D</th>
+    <th>E</th>
+    <th>F</th>
+    <th>G</th>
+    <th>H</th>
+    <th>I</th>
+    <th>J</th>
+  </tr>
+  <tr>
+    <th>7</th>
+    <td>Stop Points</td>
+    <td>Days</td>
+    <td>Display Name</td>
+    <td>VID</td>
+    <td>College Place</td>
+    <td>Manley North</td>
+    <td>Manley South</td>
+    <td>GoldStein Center</td>
+    <td>NOTE</td>
+    <td>file:nob-hill.kml</td>
+  </tr>
+  <tr>
+    <th>8</th>
+    <td>240</td>
+    <td>MWF</td>
+    <td>Nob Hill</td>
+    <td>VID</td>
+    <td>07:30:00 AM</td>
+    <td>=E8+TIME(0,10,0)</td>
+    <td>=F8+TIME(0,2,0)</td>
+    <td>=G8+TIME(0,8,0)</td>
+    <td></td>
+    <td></td>
+  </tr>
+  </tbody>
 </table>
 <p>
-    This formula would make row 8 to look like:
+  This formula would make row 8 to look like:
 </p>
 <table class="table table-bordered">
-    <tbody>
-    <tr>
-        <th></th>
-        <th>A</th>
-        <th>B</th>
-        <th>C</th>
-        <th>D</th>
-        <th>E</th>
-        <th>F</th>
-        <th>G</th>
-        <th>H</th>
-        <th>I</th>
-        <th>J</th>
-    </tr>
-    <tr>
-        <th>8</th>
-        <td>240</td>
-        <td>MWF</td>
-        <td>Nob Hill</td>
-        <td>VID</td>
-        <td>07:30:00 AM</td>
-        <td>07:40:00 AM</td>
-        <td>07:42:00 AM</td>
-        <td>07:50:00 AM</td>
-        <td></td>
-        <td></td>
-    </tr>
-    </tbody>
+  <tbody>
+  <tr>
+    <th></th>
+    <th>A</th>
+    <th>B</th>
+    <th>C</th>
+    <th>D</th>
+    <th>E</th>
+    <th>F</th>
+    <th>G</th>
+    <th>H</th>
+    <th>I</th>
+    <th>J</th>
+  </tr>
+  <tr>
+    <th>8</th>
+    <td>240</td>
+    <td>MWF</td>
+    <td>Nob Hill</td>
+    <td>VID</td>
+    <td>07:30:00 AM</td>
+    <td>07:40:00 AM</td>
+    <td>07:42:00 AM</td>
+    <td>07:50:00 AM</td>
+    <td></td>
+    <td></td>
+  </tr>
+  </tbody>
 </table>
 <p>
-    Furthermore, spreadsheet programs allow you to select a set of cells where you can extend the formula calculations
-    down into other rows. And therefore, you can fill out a schedule pretty quickly, if you can recognize these duration
-    patterns and apply the formulas.
+  Furthermore, spreadsheet programs allow you to select a set of cells where you can extend the formula calculations
+  down into other rows. And therefore, you can fill out a schedule pretty quickly, if you can recognize these duration
+  patterns and apply the formulas.
 </p>
 <p>
-    The problem comes in when the representation goes over midnight in some cases. In the following example, the TIME
-    equations flow into the next day.
+  The problem comes in when the representation goes over midnight in some cases. In the following example, the TIME
+  equations flow into the next day.
 </p>
 <table class="table table-bordered">
-    <tbody>
-    <tr>
-        <th></th>
-        <th>A</th>
-        <th>B</th>
-        <th>C</th>
-        <th>D</th>
-        <th>E</th>
-        <th>F</th>
-        <th>G</th>
-        <th>H</th>
-        <th>I</th>
-        <th>J</th>
-    </tr>
-    <tr>
-        <th>8</th>
-        <td>240</td>
-        <td>MWF</td>
-        <td>Nob Hill</td>
-        <td>VID</td>
-        <td>11:50:00 PM</td>
-        <td>12:00:00 AM</td>
-        <td>12:02:00 AM</td>
-        <td>12:10:00 AM</td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <th>9</th>
-        <td>240</td>
-        <td>MWF</td>
-        <td>Nob Hill</td>
-        <td>VID</td>
-        <td>12:00:00 AM</td>
-        <td>12:10:00 AM</td>
-        <td>12:12:00 AM</td>
-        <td>12:20:00 AM</td>
-        <td></td>
-        <td></td>
-    </tr>
-    </tbody>
+  <tbody>
+  <tr>
+    <th></th>
+    <th>A</th>
+    <th>B</th>
+    <th>C</th>
+    <th>D</th>
+    <th>E</th>
+    <th>F</th>
+    <th>G</th>
+    <th>H</th>
+    <th>I</th>
+    <th>J</th>
+  </tr>
+  <tr>
+    <th>8</th>
+    <td>240</td>
+    <td>MWF</td>
+    <td>Nob Hill</td>
+    <td>VID</td>
+    <td>11:50:00 PM</td>
+    <td>12:00:00 AM</td>
+    <td>12:02:00 AM</td>
+    <td>12:10:00 AM</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <th>9</th>
+    <td>240</td>
+    <td>MWF</td>
+    <td>Nob Hill</td>
+    <td>VID</td>
+    <td>12:00:00 AM</td>
+    <td>12:10:00 AM</td>
+    <td>12:12:00 AM</td>
+    <td>12:20:00 AM</td>
+    <td></td>
+    <td></td>
+  </tr>
+  </tbody>
 </table>
 <p>
-    In line 8, when "11:50:00 PM" comes before "12:00:00 AM" in a horizontal line,
-    the Busme! CSV compiler does some analysis. First, it wants to add 24 hours to "12:00:00 AM", because
-    "12:00:00 AM" is temporally before "11:50:00 PM". However, just to make sure that is not a typographical
-    error, the Busme! CSV compiler uses the path to calculate the average speed. It will issue a warning
-    if the calculated speed doesn't seem feasible.  Therefore, the time in <em>minutes from midnight</em>
-    for line 8. would be 1430, 1440, 1442, 1450.
+  In line 8, when "11:50:00 PM" comes before "12:00:00 AM" in a horizontal line,
+  the Busme! CSV compiler does some analysis. First, it wants to add 24 hours to "12:00:00 AM", because
+  "12:00:00 AM" is temporally before "11:50:00 PM". However, just to make sure that is not a typographical
+  error, the Busme! CSV compiler uses the path to calculate the average speed. It will issue a warning
+  if the calculated speed doesn't seem feasible. Therefore, the time in <em>minutes from midnight</em>
+  for line 8. would be 1430, 1440, 1442, 1450.
 </p>
 <p>
-    Temporal mistakes can happen due to typographical errors. For instance, given two cells with "11:19:00 AM"
-    and "11:14:00 AM", where the second time should have been "11:24:00 AM" where the stops are 1 mile appart.
-    The above situation applies and 24 hours is added to "11:14:00 AM" bring it to the next day.
-    However, the analysis may issue a warning because that would constitute 1435 minutes to go 1 mile.
+  Temporal mistakes can happen due to typographical errors. For instance, given two cells with "11:19:00 AM"
+  and "11:14:00 AM", where the second time should have been "11:24:00 AM" where the stops are 1 mile appart.
+  The above situation applies and 24 hours is added to "11:14:00 AM" bring it to the next day.
+  However, the analysis may issue a warning because that would constitute 1435 minutes to go 1 mile.
 </p>
 <p>
-    Vertically is a bit trickier and only applies to the start time of the journey, i.e. first cell with
-    in the journey line that contains a time. In the above example, between lines 8 and 9, Column E has the
-    same situation, "11:50:00 PM" comes before "12:00:00 AM". Here the Busme! CSV Compiler just simply assumes that you
-    are turning to the next day and adds 24 hours  because
-    12:00:00 AM is temporally before "11:50:00 PM" in Column E. Therefore, the time in <em>minutes from midnight</em>
-    for line 9. would be 1440, 1450, 1452, 1460.
+  Vertically is a bit trickier and only applies to the start time of the journey, i.e. first cell with
+  in the journey line that contains a time. In the above example, between lines 8 and 9, Column E has the
+  same situation, "11:50:00 PM" comes before "12:00:00 AM". Here the Busme! CSV Compiler just simply assumes that you
+  are turning to the next day and adds 24 hours because
+  12:00:00 AM is temporally before "11:50:00 PM" in Column E. Therefore, the time in <em>minutes from midnight</em>
+  for line 9. would be 1440, 1450, 1452, 1460.
 </p>
 <p>
-    You must be careful in the vertical case because due to some cells being empty, The time is always compared
-    to the first cell above the cell in question that is not empty. Therefore, it may be difficult to get a
-    representation of that time, if it is indeed supposed to start on a time that should be 24 hours in advance.
-    However, we see this case to be rare or non-existent.
+  You must be careful in the vertical case because due to some cells being empty, The time is always compared
+  to the first cell above the cell in question that is not empty. Therefore, it may be difficult to get a
+  representation of that time, if it is indeed supposed to start on a time that should be 24 hours in advance.
+  However, we see this case to be rare.
 </p>
 <h4>Busme! CSV Compiler understands TIME formulas</h4>
 <p>
-    Some spreadsheet programs, such as newer versions of Libre Office Calc will allow you to write the
-    formulas into the CSV file. The Busme! CSV compiler can parse simple arithmetic formulas with the
-    TIME formula. Using the TIME formulas can eliminate ambiguities, as you may always add TIME(24,0,0)
-    to a time.
+  Some spreadsheet programs, such as newer versions of Libre Office Calc will allow you to write the
+  formulas into the CSV file. The Busme! CSV compiler can parse simple arithmetic formulas with the
+  TIME formula. Using the TIME formulas can eliminate ambiguities, as you may always add TIME(24,0,0)
+  to a time.
+</p>
+<h4>Why use seconds or fractions of minutes?</h4>
+<p>
+  The Busme CSV Compiler does some analysis to mitigate some typographic errors. So, if you had
+  two Stop Points that had identical times in minutes next to each other, the time compiler could assume one of two
+  things.
+</p>
+<nl>
+  <li>
+    You made a mistake and the vehicle would be going through a time warp to get there at the same time it left
+    the other stop, or
+  </li>
+  <li>
+    It took a whole day to get there.
+  </li>
+</nl><br />
+<p>
+  Rather than choosing an ambiguous case, the Busme! CSV Compiler issues a warning as a "time issue."
+  However, as some Bus schedules may indeed have the same time in minute resolution for two consecutive stops,
+  you can easily mitigate the ambiguity by using seconds or fractions of minutes. It's probably the case that
+  those stops are literally 20 or 30 seconds apart. So, we give you the opportunity to use
+  fractions of minutes or seconds.
 </p>
 <h4>Allowable Time Formats</h4>
 <p>
-    The following table lays down examples of Time representations and their meanings.
+  The following table lays down examples of Time representations that are acceptable by the Busme! Plan Compiler.
 </p>
 <table class="table table-stripped">
-    <tbody>
-    <tr>
-        <td>12:00 AM</td>
-        <td>General AM/PM time</td>
-    </tr>
-    <tr>
-        <td>12:00:30 PM</td>
-        <td>General AM/PM time with seconds</td>
-    </tr>
-    <tr>
-        <td>14:30</td>
-        <td>24 hour time</td>
-    </tr>
-    <tr>
-        <td>24:30</td>
-        <td>24 hour time into the next day</td>
-    </tr>
-    <tr>
-        <td>14:30:30</td>
-        <td>24 hour time with seconds</td>
-    </tr>
-    <tr>
-        <td>~11:30:00 PM</td>
-        <td>Literal. Time on the previous day. Tilde (~) may be applied to any time format</td>
-    </tr>
-    <tr>
-        <td>01:30*</td>
-        <td>Literal Time on the following day. Star (*) may be applied to any time format</td>
-    </tr>
-    <tr>
-        <td>=E8+TIME(0,4,0)</td>
-        <td>Time and Cell Formula</td>
-    </tr>
-    <tr>
-        <td>-40</td>
-        <td>Minutes before midnight</td>
-    </tr>
-    <tr>
-        <td>506</td>
-        <td>Minutes after midnight</td>
-    </tr>
-    </tbody>
+  <tbody>
+  <tr>
+    <td>12:00 AM</td>
+    <td>General AM/PM time</td>
+  </tr>
+  <tr>
+    <td>12:00:30 PM</td>
+    <td>General AM/PM time with seconds</td>
+  </tr>
+  <tr>
+    <td>14:30</td>
+    <td>24 hour time</td>
+  </tr>
+  <tr>
+    <td>24:30</td>
+    <td>24 hour time into the next day</td>
+  </tr>
+  <tr>
+    <td>14:30:30</td>
+    <td>24 hour time with seconds</td>
+  </tr>
+  <tr>
+    <td>~11:30:00 PM</td>
+    <td>Literal. Time on the previous day. Tilde (~) may be applied to any time format</td>
+  </tr>
+  <tr>
+    <td>01:30*</td>
+    <td>Literal Time on the following day. Star (*) may be applied to any time format</td>
+  </tr>
+  <tr>
+    <td>=E8+TIME(0,4,0)</td>
+    <td>Cell and Time Formula</td>
+  </tr>
+  <tr>
+    <td>-40</td>
+    <td>Minutes before midnight</td>
+  </tr>
+  <tr>
+    <td>506</td>
+    <td>Minutes after midnight</td>
+  </tr>
+  <tr>
+    <td>1340.50</td>
+    <td>Minutes and fraction of minutes after midnight</td>
+  </tr>
+  </tbody>
 </table>
 
 

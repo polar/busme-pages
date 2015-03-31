@@ -1,0 +1,151 @@
+<h1>Busme! KML Journey Pattern File</h1>
+<p>
+  KML is an XML based defacto standard for presenting or structuring geographic data. Special forms of a KML
+  file may be used to present graphics, such as icons, lines, an polygons on a map. It is a general standard
+  for structuring geographic data. Not every valid KML file is able to be used by whatever programs says that
+  they accept KML files.
+</p>
+<p>
+  Busme! uses a special structure of a KML file to represent a Journey Pattern. We present here the structure
+  that we call a Busme! KML file, that can be fed into our Journey Builder Tool and our Busme! CSV Compiler.
+</p>
+<p>
+  You may create your own Busme! KML files, which is a function that the Journey Builder tool does.
+  For example, you may create a Busme! KML file with Google Earth by manual editing. This effort would be
+  quite tedious, but we present this specification in case you have or create tools or scripts to
+  create Busme! KML Journey Pattern Files.
+</p>
+<h2>Busme! Definitions</h2>
+<p>We first present some terms that comprise a Journey Pattern in Busme!</p>
+<dl>
+  <dt>Journey Pattern</dt>
+  <dd>
+    A Journey Pattern is a sequence of Journey Pattern Links and Stop Points.
+  </dd>
+  <dt>Journey Pattern Link</dt>
+  <dd>
+    A Journey Pattern Link is a combination of a reference to two Stop Points and a geometry that connects
+    a line between the two Stop Points.
+  </dd>
+  <dt>Stop Point</dt>
+  <dd>
+    A Stop Point is a combination of a name and a geographic location, i.e. longitude and latitude.
+  </dd>
+</dl>
+<h3>KML Mapping</h3>
+<p>
+  This section specifies the mapping of a Journey Pattern to its representative Busme! KML Structure.
+</p>
+<dl>
+  <dt>Journey Pattern</dt>
+  <dd>
+    <p>
+      A Journey Pattern is represented by a KML Folder that has a Name component, and a sequence of Placemarks.
+      The Name Component for the Folder contains the word "Busme" and there must be at least 3 Placemarks.
+    </p>
+    <pre>
+      &lt;kml xmlns='http://earth.google.com/kml/2.0'>
+      &lt;Folder>
+        &lt;name>Busme&lt;/name>
+        &lt;Placemark id="sp_0">
+        &lt;/Placemark>
+        &lt;Placemark id="link_0">
+        &lt;/Placemark>
+        &lt;Placemark id="sp_1">
+        &lt;/Placemark>
+      &lt;/Folder>
+    </pre>
+    <p>
+      The Placemarks are arranged in a sequence that represents Stop Point, Link, Stop Point, Link, Stop Point, and
+      so on.
+    </p>
+  </dd>
+  <dt>Stop Point</dt>
+  <dd>
+    <p>
+      A Stop Point is represented by a Placemark that has a name component and a Point Geometry component.
+    </p>
+    <pre>
+      &lt;Placemark id="sp_0">
+        &lt;name>sp_0:30th St Station&lt;/name>
+        &lt;point>
+          &lt;coordinates>
+           -75.182411, 39.954720
+          &lt;/coordinates>
+        &lt;/point>
+      &lt;/Placemark>
+    </pre>
+    <p>
+      Each Stop Point Placemark has an "id" attribute that specifies the place in the sequence of Stop Points
+      in the Journey Pattern. The prefix of a Stop Point Placemark's id attribute is "sp_".
+      The complete id attribute is the prefix followed by the cardinal sequence number of the stop, which
+      means the first Stop Point's number is zero (0).
+      A constraint is that the name component must contain the name of the Stop Point prefixed with its id attribute
+      followed by a colon (:).
+    </p>
+    <p>
+      The Point component follows the KML standard in that it must contain a Coordinates component that contains
+      the longitude and latitude, in that order, separated by a comma (,).
+    </p>
+  </dd>
+  <dt>Link</dt>
+  <dd>
+    <p>
+      A Link is represented by a Placemark that has a name component and a LineString Geometry component.
+    </p>
+    <pre>
+      &lt;Placemark id="link_0">
+        &lt;name>link_0:&lt;/name>
+        &lt;linestring>
+          &lt;coordinates>
+           -75.182411,39.954720 -75.182433,39.95443 -75.18253,39.95482
+          &lt;/coordinates>
+        &lt;/linestring>
+      &lt;/Placemark>
+    </pre>
+    <p>
+      Each Link Placemark has an "id" attribute that specifies the place in the sequence of Links in the Journey
+      Pattern. The prefix of a Link Placemark's id attribute is "link_". The complete id attribute is the prefix
+      followed by the cardinal sequence number of the link, which means the first Link's number is zero (0). A
+      Placemark requires a name component, so a constraint is that the name component contains the id attribute
+      followed by a colon (:).
+    </p>
+    <p>
+      The Linestring component follows the KML standard in that it must contain a Coordinates component that
+      contains a sequence of longitude, latitude pairs, in which longitude and latitude are separated by a comma (,),
+      and the pairs are themselves separated by a white space character (i.e. space, new line, tab).
+    </p>
+  </dd>
+</dl>
+<p>
+  The general constraints are that the Journey Pattern must have at least 2 Stop Point Placemarks and one
+  Link Placemark.
+</p>
+<p>
+  Further than that, there must be one more Stop Point Placemark than there are Link Placemarks
+  in the Folder construct, and they must alternate Stop Point, Link, Stop Point, etc. The id attributes of the place
+  marks must follow the following pattern, sp_0, link_0, sp_1, link_1, sp_2, link_2, sp_3, ......
+</p>
+<p>
+  A Link Placemark with an id of link_<em>n</em> should draw a line between the coordinates of sp_<em>(n-1)</em>
+  to sp_<em>n</em>. If it is not
+  exact, the Busme! Journey Builder Tool and the Busme! CSV Compiler will add a connecting line from the coordinate
+  of the Stop Point sp_<em>(n-1)</em> to the first longitude latitude pair of the Link, and will draw a
+  connecting line from the last longitude latitude pair in the Link to the coordinate of Stop Point sp_<em>n</em>.
+</p>
+<h3>Examples of Busme! KML Journey Pattern File</h3>
+<p>
+  The following links contain some example valid Busme! KML Journey Pattern Files
+</p>
+<ul>
+  <li>
+    <a href="https://objects.dreamhost.com:443/busme-prod-files/examples/JamesStreetShuttleRoundTripSyracuse.kml">
+      James Street Shuttle Round Trip Syracuse
+    </a>
+  </li>
+  <li>
+    <a href="https://objects.dreamhost.com:443/busme-prod-files/examples/NewPaltzLoopRoute1.kml">
+      New Paltz Loop Route 1 New Paltz, NY
+    </a>
+  </li>
+</ul>

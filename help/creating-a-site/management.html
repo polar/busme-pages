@@ -1,202 +1,220 @@
 <h1>Busme! Transit Site Administration</h1>
 <p>
-    If you are logged into your Busme! Transit site, you may get there by your URL. If you
-    have the roles of a "Super", "Planner", or "Operator", you will see an <u>Admin</u> link in the
-    upper right navigation section of the page header.
-    That link will bring you to the front page of the Adminstration console for your site.
+  If you are logged into your Busme! Transit site, you may get there by your URL. If you
+  have the roles of a "Super", "Planner", or "Operator", you will see an <u>Admin</u> link in the
+  upper right navigation section of the page header.
+  That link will bring you to the front page of the Administration console for your site.
 </p>
 
 <div class="well">
-<h1>Administration</h1>
+  <h1>Administration</h1>
 
-<table class="table table-bordered">
+  <table class="table table-bordered">
     <tbody>
     <tr>
-        <th>Name</th>
-        <td>Syracuse-University</td>
+      <th>Name</th>
+      <td>Syracuse-University</td>
     </tr>
     <tr>
-        <th>Location</th>
-        <td>-76.131539, 43.037268</td>
+      <th>Location</th>
+      <td>-76.131539, 43.037268</td>
     </tr>
     <tr>
-        <th>Time Zone</th>
-        <td>America/New_York</td>
+      <th>Time Zone</th>
+      <td>America/New_York</td>
     </tr>
     <tr>
-        <th>Date Format</th>
-        <td>YYYY-MM-DD</td>
+      <th>Date Format</th>
+      <td>YYYY-MM-DD</td>
     </tr>
     <tr>
-        <th>Owner</th>
-        <td>Nikolay Rodionov</td>
+      <th>Owner</th>
+      <td>Nikolay Rodionov</td>
     </tr>
     <tr>
-        <th>Description</th>
-        <td></td>
+      <th>Description</th>
+      <td></td>
     </tr>
     </tbody>
-</table>
+  </table>
 
-<table class="table table-bordered">
+  <table class="table table-bordered">
     <thead>
     <tr>
-        <th></th>
-        <th>Deployment</th>
-        <th>Owner</th>
-        <th>Status</th>
-        <th colspan="2">Operations</th>
+      <th></th>
+      <th>Deployment</th>
+      <th>Owner</th>
+      <th>Status</th>
+      <th colspan="2">Operations</th>
     </tr>
     </thead>
     <tbody>
     <tr>
-        <th><a href="#">Active Deployment</a></th>
-        <td><a href="#">Spring2014-NoCazLmo</a></td>
-        <td>Dr Polar Humenn</td>
-        <td>Running</td>
-        <td><a href="#" class="btn">Admin Map</a></td>
-        <td><form action="#" class="button_to" method="post"><div><input class="btn" type="submit" value="Deactivate" /><input name="authenticity_token" type="hidden" value="AyBC2I5ZyxUeDQsTNV6buXhKavUmQ5DbMKtS+7RjnRI=" /></div></form></td>
+      <th><a href="#">Active Deployment</a></th>
+      <td><a href="#">Spring2014-NoCazLmo</a></td>
+      <td>Dr Polar Humenn</td>
+      <td>Running</td>
+      <td><a href="#" class="btn">Admin Map</a></td>
+      <td>
+        <form action="#" class="button_to" method="post">
+          <div><input class="btn" type="submit" value="Deactivate"/><input name="authenticity_token" type="hidden"
+                                                                           value="AyBC2I5ZyxUeDQsTNV6buXhKavUmQ5DbMKtS+7RjnRI="/>
+          </div>
+        </form>
+      </td>
     </tr>
     <tr>
-        <th><a href="#">Testing Deployment</a></th>
-        <td colspan="6">No Deployment selected for testing</td>
+      <th><a href="#">Testing Deployment</a></th>
+      <td colspan="6">No Deployment selected for testing</td>
     </tr>
     </tbody>
-</table>
+  </table>
 
-<div class="row">
+  <div class="row">
     <div class="span3">
-        <table class="table table-bordered">
-            <tbody>
-            <tr>
-                <th><a href="#">Messages</a></th>
-                <td>
-                    0</td>
-            </tr>
-            </tbody>
-        </table>
+      <table class="table table-bordered">
+        <tbody>
+        <tr>
+          <th><a href="#">Messages</a></th>
+          <td>
+            0
+          </td>
+        </tr>
+        </tbody>
+      </table>
     </div>
-</div>
+  </div>
 
-<a href="#" class="btn">Edit Information</a>
-<a href="#" class="btn">Deployments</a>
+  <a href="#" class="btn">Edit Information</a>
+  <a href="#" class="btn">Deployments</a>
 </div>
 <p>
-    From there you will see certain information about your Busme! Transit site, which is the
-    information you entered when you created the site, such as the Name, default Location, Time Zone,
-    Date Format, Description, and the name of the Owner of the site.
-    This page will also give you a link to change that information, and will give you a link to the list of
-    Deployments your site contains.
+  From there you will see certain information about your Busme! Transit site, which is the
+  information you entered when you created the site, such as the Name, default Location, Time Zone,
+  Date Format, Description, and the name of the Owner of the site.
+  This page will also give you a link to change that information, and will give you a link to the list of
+  Deployments your site contains.
 </p>
 <p>
-    A Deployment is a unit of management. Deployments may be "activated"
-    to be the published system or in a testing mode The console will tell you what, if any, deployments
-    have been activated or activated for testing. A description of being activated follows below. But first
-    some explanation of Deployments and Networks is warranted.
+  A Deployment is a unit of management. Deployments may be "activated"
+  to be the published system or in a testing mode. The dashboard will tell you if and which deployment
+  has been activated or activated for testing. A description of a Deployment being activated follows below.
+  However, first we offer an explanation of Deployments and Networks.
 </p>
 <H2>Administration Structure</h2>
 <p>
-    A Busme! Transit Site has a particular structure that fosters the ability to have its management handled
-    by several people simultaneously. Getting routes drawn
-    and schedules filled can take a lot of time. That task for an entire bus system may be done
-    faster by using the <em>divide and conquer</em> method of that task with several planners.
+  A Busme! Transit Site has a particular structure that fosters the ability to have its management handled
+  by several people simultaneously. Getting routes drawn
+  and schedules filled can take a lot of time. This task for an entire bus system may be done
+  faster by using a <em>divide and conquer</em> method of that task with several Planners.
 </p>
 <p>
-    The top level management component is a Deployment. Under a Deployment, exists a collection
-    of entities called Networks. The Deployment and Network are the main components that comprise the management
-    of a Busme! Transit Site.
+  The top level management component is called a Deployment. Under a Deployment, there exists a collection
+  of entities called Networks. The Deployment and Network are the main components that comprise the management
+  of a Busme! Transit Site. Their respective definitions an purposes are listed below:
 </p>
 <h3>Deployment</h3>
 <p>
-    To help facilitate management of a Busme! Transit site, the site is divvied up into a
-    a number of top level components called a Deployments.
+  To help facilitate management of a Busme! Transit site, the site is divvied up into a
+  a number of top level components called a Deployments.
 </p>
 <p>
-    A Deployment is a grouping entity that comprises
-    the entire routes and schedule that may activated. When you "activate" a Deployment
-    you "run" the system simulation. Running a system simulation means that your site is
-    able to collect posted locations from the Busme! Mobile App, and your system appears
-    as running on its public facing page.
+  A Deployment is a grouping entity that comprises
+  the entire routes and schedule that may activated for a particular Busme! Transit Site.
+  When you "activate" a Deployment you "run" the system simulation.
 </p>
 <p>
-    You maintain ceployments to serve as different schedule designations. For example, you
-    may have deployments entitled "Normal" and "Snow Day", each which contains the routes and
-    schedule for every day, and possibly different routes and/or schedules for and
-    emergency snow service, respectively. This approach allows you to have two valid system
-    definitions and activate the one you need with a couple clicks.
+  Running a system simulation means that your site is modeling vehicle locations according to your
+  entered schedules. Also, your system is able
+  able to collect locations reported from the Busme! Mobile App. Your Busme! Transit system appears
+  as running on its public facing page.
 </p>
 <p>
-    You may also use deployments as workspaces. For instance, you may be able to
-    activate "Spring 2014" while simultaneously working on Deployment "Fall 2014".
+  You maintain Deployments to serve as different schedule designations. For example, you
+  may have deployments entitled "Normal" and "Snow Day", each which contains the routes and
+  schedule for every day, and possibly different routes and/or schedules for and
+  emergency snow service, respectively. This approach allows your Planners to create two valid system
+  definitions, and your Operators to activate the one you need with a couple clicks.
 </p>
 <p>
-    Deployments are owned by people in the Planner role, when they are created by that
-    person. An Operator may activate a particular deployment, but not define it or change it.
+  You may also use Deployments as workspaces. For instance, you may be able to
+  activate Deployment "Spring 2015", while simultaneously working on Deployment "Fall 2015".  Similarly,
+  you might have Deployments owned by other Planners, such as "Marys Space," "Peters Space,", and then you can
+  either merge them or select and copy different Networks from other Deployments into them.
 </p>
 <p>
-    To help divvy up the workload even more, a Deployment is comprised of Networks, which
-    are logical divisions of deployments.
+  Deployments are owned by people in the Planner role, when they are created by that
+  person. An Operator may activate a particular deployment, but an Operation may not define it or change it.
 </p>
 <p>
-    When you create a new Busme! Transit site,
-    you are given one Deployment named "Deployment 1" containing one Network, named "Network 1".
-    These components are created for you as a convenience, so that you may start defining
-    your routes and schedules right away.
+  To help divvy up the workload even more, a Deployment is comprised of Networks, which
+  are logical divisions of Deployments.
+</p>
+<p>
+  When you create a new Busme! Transit site,
+  you are given one Deployment named "Deployment 1" containing one Network, named "Network 1".
+  These components are created for you as a convenience, so that you may start defining
+  your routes and schedules right away. You may change their names, or delete them.
 </p>
 <h3>Network</h3>
 <p>
-    A Network is just merely a logical division of a Deployment. A Network contains the routes and
-    schedules of one or more bus routes. You may also copy a network into another deployment.
-    Therefore, you may have two or three people working on different routes in their own
-    deployment workspaces, and copy those networks to a deployment that may be activated.
+  A Network is a logical division of a Deployment. A Network contains the routes and
+  schedules of one or more bus Routes. You may also copy a Network into another Deployment.
+  Therefore, you may have two or three people working on different Routes in their own
+  Deployment workspaces, and copy those Networks to a Deployment that may be activated.
 </p>
 <p>
-    Networks usually represent some section or network of Routes. For instance, you may have
-    a Deployment named "Normal" with Networks named "Southbound", "Northbound",
-    and "Crosstown".
+  Networks usually represent some section or collection of Routes. For instance, you may have
+  a Deployment named "Normal" with Networks named "Southbound", "Northside",
+  and "Mall Buses".
 </p>
 <p>
-    Working with networks also may speed up the "compiling" process in that you may only
-    have to change a few things in your Busme! CSV files for a particular network and
-    upload them for processing without having to upload to reprocess the entire deployment.
+  Working with Networks also may speed up the "compiling" process in that you may only
+  have to change a few things in your Busme! CSV files for a particular Network and
+  upload them for processing without having to upload to reprocess the entire Deployment.
 </p>
 <h3>Consistent Deployment</h3>
 <p>
-    A Deployment may only be activated if it is "consistent". We claim a deployment is "consistent"
-    if there are no common routes inside different networks of the Deployment, as that could cause
-    conflicts. So, if two different networks within a Deployment contained a Route with the Route Code
-    of "240", the Deployment would be inconsistent, and it will not be able to be simulated or
-    activated.
+  A Deployment may only be activated if it is "consistent". We claim a Deployment is "consistent"
+  if there are no common routes inside different Networks of the Deployment, as that could cause
+  conflicts. So, if two different Networks within a Deployment contained a Route with the Route Code
+  of "240", the Deployment would be inconsistent, and it will not be able to be simulated or
+  activated.
 </p>
 <p>
-    Using a Deployment merely as a workspace, you may have a Deployment with many networks
-    that have routes in common. However, you will not be able to
-    activate it or simulate it.
+  You may still use a Deployment merely as a workspace, such that it may be inconsistent. You may have
+  a Deployment with many Networks that have routes in common, but, you will not be able to
+  activate it or simulate it.
 </p>
 <h3>Active Deployment</h3>
 <p>
-    An Active Deployment is a Deployment that has been Activated. Only one Deployment may be
-    activated at a time. When activated, the routes and journeys defined within networks of the deployment
-    are simulated on our backend processors. The result is that one may see the vehicle icons moving on the
-    screen, and the Busme! Mobile App may post its GPS location on certain vehicles.
+  An Active Deployment is a Deployment that has been "activated," which means the system is running the
+  simulation for that particular Deployment. Only one Deployment may be
+  activated at a time. When activated, the routes and journeys defined within the Networks of the Deployment
+  are simulated on our backend processors. When a Deployment becomes the Active Deployment the public
+  may see the vehicle icons moving on the screen, and the Busme! Mobile App may reports its GPS location
+  for specific vehicles.
 </p>
 <h3>Testing Deployment</h3>
 <p>
-    A Testing Deployment is a Deployment that has been activated for testing. Only one Deployment may be
-    activated for testing at a time. When activated for testing, the routes and journeys defined within
-    networks of the deployment are simulated on our backend processors in testing mode. The result is that
-    may see the vehicle icons moving on the screen in the testing page, and the Busme! Mobile App in testing mode
-    may post its GPS location on certain vehicles. The Testing Deployment allows you to test certain aspects
-    of your system, such as accuracy of travel times, etc without publishing your results to the public.
+  A Testing Deployment is a Deployment that has been activated for testing, which means the system is running
+  the simulation for that particular Deployment, only in a testing mode. Only one Deployment may be
+  activated for testing at a time. When activated for testing, the routes and journeys defined within
+  Networks of the Deployment are simulated on our backend processors. The result is that your Planners
+  may only see the vehicle icons moving on the Testing Administration screen. The Busme! Mobile App, when
+  in testing mode may report its GPS location for specific vehicles. The Testing Deployment allows you to
+  test certain aspects of your system, such as accuracy of travel times, etc. without exposing the
+  testing system to the public. It is only available to your Planners.
 </p>
 <h3>Simulating a Deployment</h3>
 <p>
-    You have the ability to simulate a deployment, which is running the simulation of your system for your
-    viewing only. You can specify a particular date and time, and specify a clock multiplier to run it faster.
-    This approach may give you a quick sense if you got your definition of the routes and schedules correct.
+  You have the ability to simulate a Deployment, which is running the simulation of your system for your
+  Planner/Operators viewing only. You can specify a particular date and time, and your Planner may specify a
+  clock multiplier to run it faster.
+  This approach may give your Planner a quick sense if you your definition of the routes and schedules are correct.
 </p>
 <p>
-    This simulating may take up needed resources for your other endeavors such as processing your plan files
-    and running your active deployment. You get limited resources for such activities until you upgrade
-    your subscription.
+  NOTE: A simulation takes up needed resources for your other endeavors such as processing your plan files
+  and running your Active Deployment. You get limited resources for such activities until you upgrade
+  your subscription.
 </p>
